@@ -18,7 +18,7 @@ workflow_status:
   research: docs/research-technical-2025-11-09.md
   product-brief: docs/project-brief.md
   prd: docs/prd-aies-ai-economy-simulator.md
-  validate-prd: optional
+  validate-prd: completed
   create-design: conditional
   create-architecture: required
   validate-architecture: optional
