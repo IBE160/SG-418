@@ -148,9 +148,9 @@ To create a simulation platform where Large Language Models (LLMs) act as autono
 -   **Language:** Python for AI integration compatibility and rapid development.
 -   **Framework:** FastAPI (Python) for high-performance RESTful API development.
 -   **AI Integration:** 
-    - Gemini model accessed via the official Google AI Python SDK for reliability and ease of use.
-    - Custom prompt engineering for consistent AI behavior
-    - Fallback logic for API failures.
+    - **Structured Output:** `pydantic-ai` will be used to force LLM responses into Pydantic models, ensuring type-safe, predictable, and validated data for all agent interactions.
+    - **LLM Service:** Gemini model accessed via the `pydantic-ai` model-agnostic python library.
+    - **Error Handling:** Failing the negotiation session
 -   **Testing:** Pytest for unit and integration tests.
 -   **Build Tool:** UV for fast Python package management.
 -   **API Architecture:** A RESTful API with versioning (/api/v1) to manage simulation state and a WebSocket connection to stream real-time updates to the frontend.
@@ -176,14 +176,15 @@ To create a simulation platform where Large Language Models (LLMs) act as autono
 
 **Implementation:**
 -   **Model:** Gemini 2.5 pro/flash.
+-   **Structured Output:** `pydantic-ai` will be used to ensure all LLM outputs strictly conform to predefined Pydantic models (e.g., `TradeOffer`, `NegotiationSession`). This is critical for the reliability of the simulation engine, preventing errors from malformed LLM responses.
 -   **Prompt Design:** 
     - System prompts will be carefully engineered to define each agent's culture, goals, and constraints. 
     - Prompts during negotiation will include the agent's state, goals, and the full history of the current negotiation session. 
     - The agents will NOT be told that this is a simulation, but will be instructed on what format to respond in and to consider all factors.
-    - Few-shot examples for consistent output format.
+    - `pydantic-ai` will inject JSON schemas into prompts to guide the LLM toward the correct output format.
     - A **Prompt Quality Checklist** will be developed and used to ensure prompt specificity and consistency.
 -   **Rate Limiting:** The simulation will pause to wait for refreshed limits. Alternatively, an API key can be provided.
--   **Fallback:** Automatic negotiation rejection.
+-   **Fallback:** Automatic negotiation rejection if the LLM API fails or if `pydantic-ai` fails to validate the LLM's output.
 
 ## Platform Type
 -   **Primary Platform:** Web application (browser-based).
