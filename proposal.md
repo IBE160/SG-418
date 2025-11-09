@@ -391,4 +391,4 @@ This timeline follows the 4-phase model of the BMAD-methodology, where phases 1 
 - AI-assisted development will increase productivity for coding tasks
 - Gemini Models through Google AI Python SDK will maintain consistent availability and performance
 - Modern web browsers support all required features (WebSockets, local storage, modern JavaScript)
-- 6 weeks is sufficient for a feature-complete MVP given AI assistance and focused scope
+- 5 weeks is sufficient for a feature-complete MVP given AI assistance and focused scope
