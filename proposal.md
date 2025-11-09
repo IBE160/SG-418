@@ -181,6 +181,7 @@ To create a simulation platform where Large Language Models (LLMs) act as autono
     - Prompts during negotiation will include the agent's state, goals, and the full history of the current negotiation session. 
     - The agents will NOT be told that this is a simulation, but will be instructed on what format to respond in and to consider all factors.
     - Few-shot examples for consistent output format.
+    - A **Prompt Quality Checklist** will be developed and used to ensure prompt specificity and consistency.
 -   **Rate Limiting:** The simulation will pause to wait for refreshed limits. Alternatively, an API key can be provided.
 -   **Fallback:** Automatic negotiation rejection.
 
@@ -360,6 +361,7 @@ This timeline follows the 4-phase model of the BMAD-methodology, where phases 1 
 - Human oversight for logic, AI prompts and architecture decisions
 
 **Testing Strategy**:
+- A **Debugging Test Harness** will be created to test agent logic in isolation, speeding up development and bug fixing.
 - Unit tests for simulation logic (initialization, state transitions)
 - Integration tests for API endpoints
 - Manual testing for AI-generated content quality
