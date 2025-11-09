@@ -17,7 +17,7 @@ workflow_status:
   brainstorm-project: docs/brainstorming-session-results-2025-11-09.md
   research: docs/research-technical-2025-11-09.md
   product-brief: docs/project-brief.md
-  prd: required
+  prd: docs/prd-aies-ai-economy-simulator.md
   validate-prd: optional
   create-design: conditional
   create-architecture: required
