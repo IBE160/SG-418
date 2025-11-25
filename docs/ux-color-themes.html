@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIES Color Theme Visualizer</title>
+    <style>
+        :root {
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #F7F9FC;
+            color: #1A202C;
+            margin: 0;
+            padding: 2rem;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #2D3748;
+        }
+        .subtitle {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 3rem;
+            color: #718096;
+            font-size: 1.1rem;
+        }
+        .theme-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .theme {
+            border: 1px solid #E2E8F0;
+            border-radius: 0.75rem;
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease-in-out;
+        }
+        .theme:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        .theme-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .theme-header h2 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.5rem;
+        }
+        .theme-header p {
+            margin: 0;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+        .theme-body {
+            padding: 1.5rem;
+        }
+        .section-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #A0AEC0;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+            padding-bottom: 0.5rem;
+        }
+        .palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 1rem;
+        }
+        .swatch {
+            text-align: center;
+        }
+        .swatch-color {
+            width: 100%;
+            height: 60px;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .swatch-label {
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            font-family: var(--font-mono);
+            color: #4A5568;
+        }
+        .components {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .component-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .card {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            border: 1px solid;
+        }
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+        .card p {
+            margin: 0;
+            font-size: 0.875rem;
+        }
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            font-size: 0.875rem;
+            border: 1px solid transparent;
+        }
+
+        /* THEME 1: BLUEPRINT */
+        .theme.blueprint { background-color: var(--bg-default); color: var(--text-default); }
+        .blueprint {
+            --bg-default: #FFFFFF;
+            --bg-muted: #F7FAFC;
+            --border-default: #E2E8F0;
+            --text-default: #1A202C;
+            --text-muted: #718096;
+            --primary: #3182CE;
+            --primary-hover: #2B6CB0;
+            --secondary: #E2E8F0;
+            --secondary-hover: #CBD5E0;
+            --accent: #63B3ED;
+            --text-on-primary: #FFFFFF;
+            --text-on-secondary: #1A202C;
+            --success: #38A169;
+            --error: #E53E3E;
+        }
+        .blueprint .btn-primary { background-color: var(--primary); color: var(--text-on-primary); }
+        .blueprint .btn-primary:hover { background-color: var(--primary-hover); }
+        .blueprint .btn-secondary { background-color: var(--secondary); color: var(--text-on-secondary); }
+        .blueprint .btn-secondary:hover { background-color: var(--secondary-hover); }
+        .blueprint .card { background-color: var(--bg-muted); border-color: var(--border-default); }
+        .blueprint .card h3 { color: var(--text-default); }
+        .blueprint .card p { color: var(--text-muted); }
+        .blueprint .alert-success { background-color: #C6F6D5; color: #276749; border-color: #9AE6B4; }
+        .blueprint .alert-error { background-color: #FED7D7; color: #9B2C2C; border-color: #FEB2B2; }
+
+        /* THEME 2: BIOSPHERE */
+        .theme.biosphere { background-color: var(--bg-default); color: var(--text-default); }
+        .biosphere {
+            --bg-default: #FAF9F6;
+            --bg-muted: #FFFFFF;
+            --border-default: #E9E5E0;
+            --text-default: #312E2B;
+            --text-muted: #695D55;
+            --primary: #2F855A;
+            --primary-hover: #276749;
+            --secondary: #F0EBE6;
+            --secondary-hover: #E2DACE;
+            --accent: #48BB78;
+            --text-on-primary: #FFFFFF;
+            --text-on-secondary: #312E2B;
+            --success: #2F855A;
+            --error: #C53030;
+        }
+        .biosphere .btn-primary { background-color: var(--primary); color: var(--text-on-primary); }
+        .biosphere .btn-primary:hover { background-color: var(--primary-hover); }
+        .biosphere .btn-secondary { background-color: var(--secondary); color: var(--text-on-secondary); }
+        .biosphere .btn-secondary:hover { background-color: var(--secondary-hover); }
+        .biosphere .card { background-color: var(--bg-muted); border-color: var(--border-default); }
+        .biosphere .card h3 { color: var(--text-default); }
+        .biosphere .card p { color: var(--text-muted); }
+        .biosphere .alert-success { background-color: #D4EDDF; color: #155724; border-color: #C3E6CB; }
+        .biosphere .alert-error { background-color: #F8D7DA; color: #721C24; border-color: #F5C6CB; }
+
+        /* THEME 3: ARCADE */
+        .theme.arcade { background-color: var(--bg-default); color: var(--text-default); }
+        .arcade {
+            --bg-default: #1A202C;
+            --bg-muted: #2D3748;
+            --border-default: #4A5568;
+            --text-default: #F7FAFC;
+            --text-muted: #A0AEC0;
+            --primary: #38B2AC;
+            --primary-hover: #319795;
+            --secondary: #4A5568;
+            --secondary-hover: #718096;
+            --accent: #81E6D9;
+            --text-on-primary: #1A202C;
+            --text-on-secondary: #F7FAFC;
+            --success: #68D391;
+            --error: #FC8181;
+        }
+        .arcade .btn-primary { background-color: var(--primary); color: var(--text-on-primary); }
+        .arcade .btn-primary:hover { background-color: var(--primary-hover); }
+        .arcade .btn-secondary { background-color: var(--secondary); color: var(--text-on-secondary); }
+        .arcade .btn-secondary:hover { background-color: var(--secondary-hover); }
+        .arcade .card { background-color: var(--bg-muted); border-color: var(--border-default); }
+        .arcade .card h3 { color: var(--text-default); }
+        .arcade .card p { color: var(--text-muted); }
+        .arcade .alert-success { background-color: rgba(104, 211, 145, 0.1); color: var(--success); border-color: rgba(104, 211, 145, 0.5); }
+        .arcade .alert-error { background-color: rgba(252, 129, 129, 0.1); color: var(--error); border-color: rgba(252, 129, 129, 0.5); }
+
+    </style>
+</head>
+<body>
+
+    <h1>AIES Color Theme Visualizer</h1>
+    <p class="subtitle">Explore three distinct visual personalities for the AIES dashboard.</p>
+
+    <div class="theme-container">
+        <!-- THEME 1: BLUEPRINT -->
+        <div class="theme blueprint">
+            <div class="theme-header">
+                <h2>1. Blueprint</h2>
+                <p>Professional, trustworthy, and academic. Evokes a precise scientific instrument.</p>
+            </div>
+            <div class="theme-body">
+                <div class="section-title">Palette</div>
+                <div class="palette">
+                    <div class="swatch"><div class="swatch-color" style="background-color: #3182CE;"></div><div class="swatch-label">Primary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #E2E8F0;"></div><div class="swatch-label">Secondary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #63B3ED;"></div><div class="swatch-label">Accent</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #F7FAFC;"></div><div class="swatch-label">BG Muted</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #1A202C;"></div><div class="swatch-label">Text</div></div>
+                </div>
+
+                <div class="section-title">Components</div>
+                <div class="components">
+                    <div class="component-row">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-secondary">Secondary Action</button>
+                    </div>
+                    <div class="card">
+                        <h3>Card Title</h3>
+                        <p>This is a card component to display module-level information on the dashboard.</p>
+                    </div>
+                    <div class="alert alert-success">Success! Your simulation has completed.</div>
+                    <div class="alert alert-error">Error! Agent 7 failed to respond.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THEME 2: BIOSPHERE -->
+        <div class="theme biosphere">
+            <div class="theme-header">
+                <h2>2. Biosphere</h2>
+                <p>Organic, vibrant, and emergent. Evokes the feeling of a living, evolving system.</p>
+            </div>
+            <div class="theme-body">
+                <div class="section-title">Palette</div>
+                <div class="palette">
+                    <div class="swatch"><div class="swatch-color" style="background-color: #2F855A;"></div><div class="swatch-label">Primary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #F0EBE6;"></div><div class="swatch-label">Secondary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #48BB78;"></div><div class="swatch-label">Accent</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #FFFFFF;"></div><div class="swatch-label">BG Muted</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #312E2B;"></div><div class="swatch-label">Text</div></div>
+                </div>
+                <div class="section-title">Components</div>
+                <div class="components">
+                    <div class="component-row">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-secondary">Secondary Action</button>
+                    </div>
+                    <div class="card">
+                        <h3>Card Title</h3>
+                        <p>This is a card component to display module-level information on the dashboard.</p>
+                    </div>
+                    <div class="alert alert-success">Success! Your simulation has completed.</div>
+                    <div class="alert alert-error">Error! Agent 7 failed to respond.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THEME 3: ARCADE -->
+        <div class="theme arcade">
+            <div class="theme-header">
+                <h2>3. Arcade</h2>
+                <p>High-contrast, focused, and energetic. A dark theme built for long hours of analysis.</p>
+            </div>
+            <div class="theme-body">
+                <div class="section-title">Palette</div>
+                <div class="palette">
+                    <div class="swatch"><div class="swatch-color" style="background-color: #38B2AC;"></div><div class="swatch-label">Primary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #4A5568;"></div><div class="swatch-label">Secondary</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #81E6D9;"></div><div class="swatch-label">Accent</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #2D3748;"></div><div class="swatch-label">BG Muted</div></div>
+                    <div class="swatch"><div class="swatch-color" style="background-color: #F7FAFC;"></div><div class="swatch-label">Text</div></div>
+                </div>
+                <div class="section-title">Components</div>
+                <div class="components">
+                    <div class="component-row">
+                        <button class="btn btn-primary">Primary Action</button>
+                        <button class="btn btn-secondary">Secondary Action</button>
+                    </div>
+                    <div class="card">
+                        <h3>Card Title</h3>
+                        <p>This is a card component to display module-level information on the dashboard.</p>
+                    </div>
+                    <div class="alert alert-success">Success! Your simulation has completed.</div>
+                    <div class="alert alert-error">Error! Agent 7 failed to respond.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
