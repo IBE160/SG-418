@@ -27,8 +27,8 @@
 ## Fase 1
 
 - [ ] Planning
-  - [ ] /run-agent-task pm *prd
-    - [ ] File: PRD.md
+  - [X] /run-agent-task pm *prd
+    - [X] File: PRD.md
   - [ ] /run-agent-task pm *validate-prd
     - [ ] File: validation-report-date.md
   - [ ] /run-agent-task ux-designer *create-ux-design {prompt / user-input-file}
