@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIES Design Direction Mockups</title>
+    <style>
+        :root {
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            
+            /* Biosphere Theme Base */
+            --primary: #2F855A;
+            --primary-hover: #276749;
+            --bg-default: #FAF9F6;
+            --bg-muted: #FFFFFF;
+            --text-default: #312E2B;
+            --text-muted: #695D55;
+            --border: #E9E5E0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: #000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        h1 { margin: 0; font-size: 1.2rem; font-weight: 500; }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        button {
+            background: #333;
+            color: white;
+            border: 1px solid #444;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover { background: #444; }
+        button.active { background: var(--primary); border-color: var(--primary); }
+
+        .viewer {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .mockup-container {
+            width: 100%;
+            height: 100%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            display: none;
+        }
+
+        .mockup-container.active {
+            display: flex;
+        }
+
+        /* Mockup Internal Styles */
+        .app-shell {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-default);
+            color: var(--text-default);
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--bg-muted);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .top-nav {
+            height: 60px;
+            background: var(--bg-muted);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            justify-content: space-between;
+        }
+
+        .card {
+            background: var(--bg-muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .grid-2 { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; }
+
+        .info-panel {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.9);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: flex;
+            gap: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .info-item { text-align: center; }
+        .info-label { font-size: 0.7rem; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+        .info-value { font-weight: bold; color: white; }
+
+        /* Direction 1: Command Center */
+        .direction-1 .sidebar { background: #2F3532; color: white; }
+        .direction-1 .app-shell { background: #F2F4F3; }
+        .direction-1 .card { box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: none; }
+
+        /* Direction 2: Spacious Explorer */
+        .direction-2 .sidebar { background: transparent; border: none; }
+        .direction-2 .app-shell { background: #FAF9F6; }
+        .direction-2 .card { border-radius: 16px; border: 1px solid #E2E8F0; }
+
+        /* Direction 3: Dense Dashboard */
+        .direction-3 .app-shell { font-size: 0.9rem; }
+        .direction-3 .card { padding: 0.75rem; margin-bottom: 0.5rem; border-radius: 4px; }
+        .direction-3 .sidebar { width: 200px; padding: 1rem; }
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AIES Design Directions</h1>
+    <div class="controls">
+        <button onclick="showDirection(1)" id="btn-1" class="active">1. Command Center</button>
+        <button onclick="showDirection(2)" id="btn-2">2. Spacious Explorer</button>
+        <button onclick="showDirection(3)" id="btn-3">3. Dense Dashboard</button>
+    </div>
+</header>
+
+<div class="viewer">
+
+    <!-- Direction 1: Command Center -->
+    <div id="dir-1" class="mockup-container active direction-1">
+        <div class="app-shell">
+            <div class="sidebar">
+                <h3 style="margin-top:0; color: #48BB78;">AIES</h3>
+                <div style="margin-top: 2rem; opacity: 0.8;">
+                    <div style="padding: 0.5rem 0; color: white; font-weight: bold;">Dashboard</div>
+                    <div style="padding: 0.5rem 0;">Simulations</div>
+                    <div style="padding: 0.5rem 0;">Agents</div>
+                    <div style="padding: 0.5rem 0;">Analytics</div>
+                </div>
+            </div>
+            <div style="flex:1; display: flex; flex-direction: column;">
+                <div class="top-nav">
+                    <span style="font-weight: 600;">Simulation #8842: Market Dynamics</span>
+                    <button style="background: #2F855A; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px;">Running</button>
+                </div>
+                <div class="main-content">
+                    <div class="grid-3" style="margin-bottom: 1rem;">
+                        <div class="card">
+                            <div style="color: #666; font-size: 0.8rem;">Active Agents</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: #2F855A;">124</div>
+                        </div>
+                        <div class="card">
+                            <div style="color: #666; font-size: 0.8rem;">Total Transactions</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: #2F855A;">$4.2M</div>
+                        </div>
+                        <div class="card">
+                            <div style="color: #666; font-size: 0.8rem;">Market Stability</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: #2F855A;">98%</div>
+                        </div>
+                    </div>
+                    <div class="grid-2" style="height: 400px;">
+                        <div class="card" style="display: flex; justify-content: center; align-items: center; background: #fff;">
+                            [Agent Interaction Graph Visualization]
+                        </div>
+                        <div class="card">
+                            <h4 style="margin-top:0;">Event Log</h4>
+                            <div style="font-family: monospace; font-size: 0.8rem; line-height: 1.5;">
+                                <div style="color: #666;">10:42:01 Agent_04 bought Resource_A</div>
+                                <div style="color: #666;">10:42:05 Agent_12 sold Resource_B</div>
+                                <div style="color: #2F855A;">10:42:12 Market Equilibrium Reached</div>
+                                <div style="color: #666;">10:42:15 Agent_04 updated strategy</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-panel">
+            <div class="info-item">
+                <div class="info-label">Philosophy</div>
+                <div class="info-value">Professional & High Contrast</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Density</div>
+                <div class="info-value">Balanced</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Best For</div>
+                <div class="info-value">Daily Monitoring</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Direction 2: Spacious Explorer -->
+    <div id="dir-2" class="mockup-container direction-2">
+        <div class="app-shell">
+            <div class="sidebar">
+                <h3 style="color: #2F855A;">AIES</h3>
+                <div style="margin-top: 2rem;">
+                    <div style="padding: 0.75rem 1rem; background: #EDF2F7; border-radius: 8px; color: #2F855A; font-weight: 600;">Dashboard</div>
+                    <div style="padding: 0.75rem 1rem;">Simulations</div>
+                    <div style="padding: 0.75rem 1rem;">Agents</div>
+                </div>
+            </div>
+            <div class="main-content">
+                <h1 style="font-size: 2rem; margin-bottom: 2rem;">Market Dynamics Sim</h1>
+                <div class="grid-2">
+                    <div class="card" style="height: 500px;">
+                        <h3 style="margin-top:0;">Network Graph</h3>
+                        <div style="height: 80%; background: #F7FAFC; border-radius: 8px; display: flex; justify-content: center; align-items: center;">
+                            [Interactive Node Graph]
+                        </div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div class="card">
+                            <h3>Key Metrics</h3>
+                            <div style="font-size: 3rem; font-weight: 300;">98.2%</div>
+                            <div>Stability Index</div>
+                        </div>
+                        <div class="card" style="flex: 1;">
+                            <h3>Recent Activity</h3>
+                            <ul style="padding-left: 1.2rem; line-height: 1.8;">
+                                <li>Price adjustment in Sector 7</li>
+                                <li>New agent spawned: Trader_X</li>
+                                <li>Volatility spike detected</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-panel">
+            <div class="info-item">
+                <div class="info-label">Philosophy</div>
+                <div class="info-value">Friendly & Approachable</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Density</div>
+                <div class="info-value">Spacious</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Best For</div>
+                <div class="info-value">Presentation & Discovery</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Direction 3: Dense Dashboard -->
+    <div id="dir-3" class="mockup-container direction-3">
+        <div class="app-shell">
+            <div class="top-nav" style="height: 40px; background: #2F855A; color: white; border: none;">
+                <span>AIES: Market Dynamics [Running]</span>
+                <div style="font-family: monospace;">CPU: 12% | MEM: 4GB</div>
+            </div>
+            <div style="display: flex; flex: 1;">
+                <div class="sidebar" style="border-right: 1px solid #ddd;">
+                    <div style="font-weight: bold; margin-bottom: 0.5rem;">Controls</div>
+                    <div style="padding: 0.25rem 0;">▶ Start</div>
+                    <div style="padding: 0.25rem 0;">⏸ Pause</div>
+                    <div style="padding: 0.25rem 0;">⏹ Stop</div>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 0.5rem 0;">
+                    <div style="font-weight: bold; margin-bottom: 0.5rem;">Parameters</div>
+                    <div style="font-size: 0.8rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Rate:</span> <span>0.05</span></div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Agents:</span> <span>124</span></div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;"><span>Epoch:</span> <span>42</span></div>
+                    </div>
+                </div>
+                <div class="main-content" style="padding: 0.5rem;">
+                    <div class="grid-3" style="height: 300px; margin-bottom: 0.5rem;">
+                        <div class="card" style="border: 1px solid #ccc;">Graph View</div>
+                        <div class="card" style="border: 1px solid #ccc;">Price/Time Chart</div>
+                        <div class="card" style="border: 1px solid #ccc;">Agent Distribution</div>
+                    </div>
+                    <div class="card" style="height: 200px; overflow: auto; font-family: monospace; background: #1a1a1a; color: #0f0;">
+                        > System initialized<br>
+                        > Loading agent config... OK<br>
+                        > Starting simulation loop...<br>
+                        > [INFO] Market open<br>
+                        > [WARN] High volatility detected in Sector 3
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-panel">
+            <div class="info-item">
+                <div class="info-label">Philosophy</div>
+                <div class="info-value">Scientific Instrument</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Density</div>
+                <div class="info-value">High</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Best For</div>
+                <div class="info-value">Power Users / Analysis</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function showDirection(id) {
+        // Hide all
+        document.querySelectorAll('.mockup-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.controls button').forEach(el => el.classList.remove('active'));
+        
+        // Show selected
+        document.getElementById('dir-' + id).classList.add('active');
+        document.getElementById('btn-' + id).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
