@@ -1,0 +1,1 @@
+Write a prompt to prompt.md for filling in @SG-418/reflection-report.md with maximum knowledge, interestingness, coolness, deep thinking, critical thinking, reflection, mind-blowing insights and relevance. The final report should be around 3000-5000 words. The text should be inspiring, wonder-making, well-structured, interesting and extremely truth-seeking and factual.
