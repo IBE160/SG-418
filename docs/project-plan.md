@@ -39,7 +39,7 @@
 
 ## Fase 2
 
-- [ ] Solutioning 
+- [X] Solutioning 
   - [X] /run-agent-task architect *create-architecture {prompt / user-input-file}
     - [X] File: architecture.md
   - [X] /run-agent-task pm *create-epics-and-stories {prompt / user-input-file}
