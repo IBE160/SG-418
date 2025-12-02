@@ -26,11 +26,11 @@
 
 ## Fase 1
 
-- [ ] Planning
+- [X] Planning
   - [X] /run-agent-task pm *prd
     - [X] File: PRD.md
-  - [ ] /run-agent-task pm *validate-prd
-    - [ ] File: validation-report-date.md
+  - [V] /run-agent-task pm *validate-prd
+    - [V] File: validation-report-date.md
   - [X] /run-agent-task ux-designer *create-ux-design {prompt / user-input-file}
     - [X] File: ux-design-specification.md
     - [X] File: ux-color-themes.html
@@ -44,8 +44,8 @@
     - [X] File: architecture.md
   - [X] /run-agent-task pm *create-epics-and-stories {prompt / user-input-file}
     - [X] File: epics.md
-  - [ ] /run-agent-task tea *test-design {prompt / user-input-file}
-  - [ ] /run-agent-task architect *solutioning-gate-check {prompt / user-input-file}
+  - [V] /run-agent-task tea *test-design {prompt / user-input-file}
+  - [X] /run-agent-task architect *solutioning-gate-check {prompt / user-input-file}
 
 ## Fase 3
 
