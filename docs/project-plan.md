@@ -42,8 +42,8 @@
 - [ ] Solutioning 
   - [X] /run-agent-task architect *create-architecture {prompt / user-input-file}
     - [X] File: architecture.md
-  - [ ] /run-agent-task pm *create-epics-and-stories {prompt / user-input-file}
-    - [ ] File: epics.md
+  - [X] /run-agent-task pm *create-epics-and-stories {prompt / user-input-file}
+    - [X] File: epics.md
   - [ ] /run-agent-task tea *test-design {prompt / user-input-file}
   - [ ] /run-agent-task architect *solutioning-gate-check {prompt / user-input-file}
 
