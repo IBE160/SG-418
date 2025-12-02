@@ -87,3 +87,100 @@ A consistent spacing system will be used to create a visually balanced and rhyth
 
 -   **Base Unit:** The core of the system is an **8px base unit**.
 -   **Scale:** All padding, margins, and element dimensions will be multiples of the base unit (e.g., 4px, 8px, 16px, 24px, 32px, 48px, 64px), ensuring a harmonious and predictable structure across the entire application.
+
+## 9. Design Direction
+
+### 9.1. Selected Direction: "Command Center"
+Based on the need for a high-density, professional research environment, the **Command Center** design direction has been selected.
+
+-   **Philosophy:** A "Scientific Instrument" aesthetic that prioritizes data visibility and control precision over decorative elements.
+-   **Layout:** A persistent sidebar for global navigation and simulation controls, maximizing the central area for data visualization.
+-   **Density:** High. The interface makes efficient use of screen real estate to show multiple data streams simultaneously (Graph, Charts, Logs) without requiring scrolling.
+-   **Visual Hierarchy:** Data first. The most prominent elements are the visualization panels (Interaction Diagram, Economic Graph). Controls are grouped logically in the sidebar or collapsible panels to reduce visual clutter when not in use.
+
+## 10. User Journey Flows
+
+### 10.1. Journey 1: Configure & Start Simulation
+**Goal:** A researcher wants to define simulation parameters (agents, resources, rules) and start the experiment.
+
+1.  **Entry:** User clicks "New Simulation" from the dashboard.
+2.  **Step 1: Global Configuration:** User sets global parameters like Day Duration (seconds), Daily Event Budget, Max Days, and Temperature.
+3.  **Step 2: Job & Agent Configuration:**
+    -   User defines the available Jobs and the Resources they produce (e.g., "Woodcutter" produces "Wood").
+    -   User sets the Agent Count and Income for each Job.
+    -   User configures agent personas (e.g., "Aggressive Trader", "Conservative Saver") and their Needs/Wants using sliders or a JSON editor for advanced control.
+4.  **Step 3: Review & Launch:** User sees a summary of the configuration (Total Agents, Resources). Clicks "Start Simulation".
+5.  **Feedback:** System transitions to the **Live Dashboard**. A loading state shows "Initializing Agents...", followed by the first tick of data appearing on the graphs.
+
+### 10.2. Journey 2: Real-time Monitoring & Inspection
+**Goal:** A researcher observes emergent behavior and investigates a specific agent's actions.
+
+1.  **Context:** Simulation is running. The main view shows the **Agent Interaction Diagram** (agents moving/connecting) and **Subjective Economic Value Graph** (sum of self-reported trade outcome values minus need penalties).
+2.  **Observation:** User notices a spike in the economy graph.
+3.  **Investigation:** User hovers over the corresponding time point on the graph. A tooltip shows "Transaction Volume High".
+4.  **Drill-down:** User looks at the **Agent Interaction Diagram**. One node is larger and red (high value).
+5.  **Inspection:** User clicks the red agent node.
+6.  **Result:** An **Inspector Panel** slides out from the right. It shows:
+    -   Agent Name/ID.
+    -   Current Stats (Satisfaction, Budget).
+    -   Current Inventory (Cash, Resources).
+    -   Recent Decisions (Log of LLM reasoning: "Price is high, I should sell.").
+    -   Conversation History (Messages exchanged with other agents).
+7.  **Action:** User pauses the simulation to analyze the log in detail without missing new events.
+
+## 11. Component Library Strategy
+
+### 11.1. Core Components (shadcn/ui)
+We will leverage the robust `shadcn/ui` library for standard interface elements to ensure consistency and speed of development.
+
+-   **Layout:** `Card`, `Sheet` (for Inspector), `Resizable` (for multi-panel layout).
+-   **Forms:** `Slider` (params), `Switch`, `Input`, `Select`, `Button`.
+-   **Feedback:** `Badge` (agent status), `Progress` (loading), `Toast` (system notifications).
+-   **Data Display:** `Table` (event logs), `ScrollArea` (log containers).
+
+### 11.2. Custom Components
+Specific research requirements necessitate custom, high-performance visualization components.
+
+-   **Agent Interaction Diagram:**
+    -   **Purpose:** Visualizes the network of agents and their real-time interactions (trades, messages).
+    -   **Tech:** Recharts.
+    -   **Features:** Zoom/Pan, Node coloring by state (rich/poor), Edge thickness by transaction volume.
+-   **Subjective Economic Value Graph:**
+    -   **Purpose:** Real-time time-series plotting of the Total Subjective Economic Value (cumulative trade scores minus need penalties).
+    -   **Tech:** Recharts.
+    -   **Features:** Real-time updates, interactive tooltips, brush-to-zoom.
+-   **Agent Inspector Panel:**
+    -   **Purpose:** detailed view of a single agent's internal state.
+    -   **Features:** Tabbed view (Inventory, Logic, Logs), raw JSON toggle.
+
+## 12. UX Pattern Consistency Rules
+
+### 12.1. Interaction Patterns
+-   **Selection:** Single click on graph nodes selects the agent and opens the Inspector. Click on canvas background deselects.
+-   **Hover:** Hovering over data points (graph or node) provides immediate, transient details via tooltips.
+-   **Simulation Control:** Play/Pause/Stop controls are always visible and accessible in the primary sidebar/header area (Global State).
+
+### 12.2. Visual Feedback
+-   **Status Indicators:** Use color sparingly but consistently.
+    -   **Green:** Active, Healthy, Profit, Growth.
+    -   **Red:** Error, High Risk, Loss, Danger.
+    -   **Yellow/Orange:** Warning, Caution, High Load.
+    -   **Blue:** Neutral information, Selected state.
+-   **Loading:** Skeleton loaders for initial data fetch. Spinner for async actions (e.g., "Step Simulation").
+
+### 12.3. Layout & Navigation
+-   **Dashboard Layout:** A resilient, grid-based layout. Panels should be collapsible to allow users to focus on specific views (e.g., expand Graph to full screen).
+-   **Navigation:** Global navigation (Home, Simulations, Settings) is located in the left sidebar. Contextual navigation (Graph settings, View options) is located in the header of the specific panel.
+
+## 13. Responsive & Accessibility Strategy
+
+### 13.1. Responsive Strategy
+Given the complex, data-heavy nature of the application, the primary target is **Desktop**.
+
+-   **Desktop ( > 1024px):** Full dashboard experience. All panels visible.
+-   **Tablet & Mobile:** Not supported in MVP. The application is designed exclusively for desktop/laptop usage to avoid unnecessary complexity, as defined in the Project Proposal.
+
+### 13.2. Accessibility (WCAG 2.1 AA)
+-   **Color Contrast:** Ensure all text meets 4.5:1 contrast ratio. Use patterns (dashes, shapes) in graphs in addition to color to distinguish data series.
+-   **Keyboard Nav:** Ensure the dashboard grid is navigable via keyboard. Graphs should support keyboard focus for data points (using arrow keys to traverse time series).
+-   **Screen Readers:** Provide `aria-label` for all icon-only buttons. Ensure data tables are properly marked up. Provide textual summaries for complex charts where possible.
