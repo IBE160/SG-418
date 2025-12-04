@@ -6,7 +6,7 @@
 
 **Gruppemedlemmer:**
 - Eirik Malme Moltubak (Gruppeleder) - eirik.m.moltubak@himolde.no
-- Vigfus Alexander Robertsson - vigfus.a.robertsson@himolde.no
+- Vigfus Alexander Robertsson (The genius behind it all) - vigfus.a.robertsson@himolde.no
 - Sofus August Hvattum - sofus.a.hvattum@himolde.no
 
 **Institusjon:** Høgskolen i Molde (HiMolde)
@@ -39,9 +39,10 @@ Selv om prosjektet er tungt teknologisk og virtuelt, var det fysiske samarbeidet
 Vi organiserte oss etter en tilpasset versjon av **BMAD-rammeverket** (Building Multi-Agent Development), men med en erkjennelse av at rollene våre ville flyte over i hverandre i møte med AI-en:
 
 *   **Oppgavefordeling:**
-    *   **Eirik (Lead Architect & Backend):** Ansvarlig for systemets integritet, FastAPI-backend, og Pydantic-modellene som holdt alt sammen. Han sørget for at koden var modulær og vedlikeholdbar.
-    *   **Vigfus (Frontend & UX Lead):** Fokuserte på Next.js-applikasjonen og visualisering av komplekse data. Hans hovedutfordring var å oversette abstrakte økonomiske data til forståelige grafer og diagrammer i sanntid.
-    *   **Sofus (Agent Logic & Prompt Engineer):** Fordypet seg i "hjernen" til agentene. Han skrev system-promptene, finjusterte forhandlingslogikken, og jobbet med å gi agentene distinkte personligheter.
+    *   **Eirik (Lead Architect & Backend):** Ansvarlig for systemets integritet, FastAPI-backend, og Pydantic-modellene som holdt alt sammen. Han sørget for at koden var modulær og vedlikeholdbar. IMPORTANT (TODO THIS IS COMPLETELY WRONG)
+    *   **Vigfus (Frontend & UX Lead):** Vigfus (Teknisk Feasibility & KI-Kvalitetssikring): Vigfus hadde hovedansvaret for å sikre prosjektets tekniske gjennomførbarhet (feasibility) og robusthet. Basert på tidligere erfaring fra Brunvoll og IT VGS, bidro han med tidlig risikovurdering og overordnet teknisk tenkning for å validere arkitekturvalgene. Han fungerte som gruppens kritiske KI-reviewer, og brukte sin erfaring med KI-verktøy til å nøye se over koden AI-en leverte for å avdekke logiske feil og brudd på beste praksis. I tillegg bidro han vesentlig til prompt engineering-arbeidet, spesielt med fokus på å strukturere instruksjonene for å oppnå forutsigbare og korrekte resultater fra språkmodellene.
+
+    *   **Sofus (Agent Logic & Prompt Engineer):** Fordypet seg i "hjernen" til agentene. Han skrev system-promptene, finjusterte forhandlingslogikken, og jobbet med å gi agentene distinkte personligheter. IMPORTANT (TODO THIS IS COMPLETELY WRONG)
 
 *   **Samarbeidsverktøy:** Vi brukte GitHub for versjonskontroll og Discord for asynkron kommunikasjon og deling av kode-snippets, men den viktigste "commiten" skjedde ofte muntlig over en kaffekopp i kantina på HiMolde.
 
@@ -168,9 +169,10 @@ Hvis vi skulle startet prosjektet på nytt i dag, med den viten vi har nå, vill
 For meg har dette prosjektet handlet om kampen for ren arkitektur i møte med en entropisk kraft. Å være "Lead Architect" med en AI som hovedutvikler er som å lede et orkester hvor en av fiolinistene (AI-en) er et geni som improviserer konstant – noen ganger briljant, noen ganger katastrofalt. Min største utfordring var å håndheve disiplin. Når Gemini foreslo en "kjapp fiks" som brøt med våre separasjonsprinsipper (f.eks. direkte databasekall i frontend), måtte jeg være den som sa "nei".
 Jeg har lært at rollen til en seniorutvikler i fremtiden vil dreie seg mindre om å skrive selve syntaksen, og mer om *code review*, arkitektonisk styring og systemforståelse. Evnen til å lese og validere kode man ikke har skrevet selv, blir den viktigste ferdigheten. Det å oppdage at modellen konsekvent ignorerte visse instrukser i `.geminiignore` lærte meg at man aldri kan stole blindt på "black box"-magi. Det har vært en lærerik, men også utmattende prosess å være "The Human in the Loop".
 
-**Vigfus Alexander Robertsson (Frontend & Visualisering):**
-Min reise handlet om å bygge broen mellom den abstrakte logikken i backend og brukerens opplevelse. Hvordan visualiserer man "tankene" til en AI? Hvordan viser man at en agent er "grådig" uten å bare skrive ordet? Utfordringen lå i å ta de tørre JSON-dataene fra agentenes forhandlinger og gjøre dem om til noe intuitivt og "levende" i frontend.
-Arbeidet med `Gemini CLI` var frustrerende når det gjaldt UI-finesse. Den er god på logikk, men dårlig på "feeling". Jeg måtte lære meg å beskrive visuelle konsepter med ord, å "male med tekst", for å få modellen til å bruke Tailwind på en måte som så profesjonell ut. Det var en påminnelse om at menneskelig estetisk sans og empati for brukeren ennå ikke kan erstattes fullt ut. Å se "Subjective Economic Value"-grafen tegne seg opp i sanntid, drevet av usynlige, digitale forhandlinger, var øyeblikket der prosjektet virkelig "klikket" for meg. Det føltes som å se pulsen på en ny livsform.
+**Vigfus Alexander Robertsson (Teknisk Feasibility, Visualisering/Frontend & KI-Kvalitetssikring):**
+Min rolle var todelt. For det første fungerte jeg som det tekniske ankeret som sikret at ambisjonene i prosjektet var forankret i realiserbar kode. Med erfaring fra Brunvoll og min bakgrunn fra IT VGS, lå mitt fokus på å tenke to skritt frem: Er denne løsningen skalerbar? Vil dette skape teknisk gjeld? Jeg viet mye tid til kodegjennomgang (code review) av AI-generert kode, og brukte min tidligere erfaring med KI-verktøy til å raskt identifisere hallusinasjoner og logiske brister før de krevde omfattende omskrivning. Dette plasserte meg i grensesnittet mellom prompt engineering (hvor jeg bidro til å strukturere instruksene for presisjon) og kvalitetssikring (hvor jeg validerte utførelsen).
+For det andre hadde jeg et spesielt ansvar for visualisering og frontend-implementeringen i Next.js. Utfordringen her var å ta de abstrakte, dynamiske JSON-dataene fra agentenes forhandlinger – som representerte "subjektiv økonomisk verdi" og komplekse transaksjoner – og oversette dem til intuitive, sanntidsgrafer og diagrammer. Jeg måtte aktivt jobbe med KI-en for å designe og implementere responsive React-komponenter og sikre at brukergrensesnittet (UI) effektivt kommuniserte simuleringsstatusen.
+Jeg har lært at i KI-assistert programmering er det ikke lenger nok å vite hvordan man koder; man må forstå hvordan KI-en feiler for å kunne lede den riktig. Dette har understreket verdien av menneskelig intuisjon for teknisk risiko i alle lag av applikasjonen, fra API-design til datavisualisering.
 
 **Sofus August Hvattum (Logikk & Økonomi):**
 Jeg fordypet meg i selve "sjelen" til simuleringen – agentenes adferd og den underliggende økonomiske logikken. Det var jeg som kjempet mest med prompt engineering for å få agentene til å oppføre seg som troverdige økonomiske aktører og ikke bare som chatbots.
