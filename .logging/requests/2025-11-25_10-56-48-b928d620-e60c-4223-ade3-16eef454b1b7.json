@@ -1,0 +1,267 @@
+[
+  {
+    "request": {
+      "session.id": "b928d620-e60c-4223-ade3-16eef454b1b7",
+      "installation.id": "03cffe84-3d8a-44a3-bf52-9d6cefcb2c67",
+      "interactive": true,
+      "user.email": "eirikmalmemoltubak@gmail.com",
+      "event.name": "gemini_cli.api_request",
+      "event.timestamp": "2025-11-25T10:56:48.786Z",
+      "model": "gemini-2.5-pro",
+      "prompt_id": "b928d620-e60c-4223-ade3-16eef454b1b7########0",
+      "request_text": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "This is the Gemini CLI. We are setting up the context for our chat.\nToday's date is Tuesday, November 25, 2025 (formatted according to the user's locale).\nMy operating system is: linux\nThe project's temporary directory is: /home/eirik/.gemini/tmp/b9bf3dee141354013465820fa9ef778df11c35ad18dc0f8e9f9e0e004536d9f8\nI'm currently working in the directory: /home/eirik/ibe160/SG-418\nHere is the folder structure of the current working directories:\n\nShowing up to 200 items (files + folders). Folders or files indicated with ... contain more items not shown, were ignored, or the display limit (200 items) was reached.\n\n/home/eirik/ibe160/SG-418/\n├───.gitignore\n├───proposal.md\n├───README.md\n├───.bmad/\n│   ├───_cfg/\n│   │   ├───agent-manifest.csv\n│   │   ├───files-manifest.csv\n│   │   ├───manifest.yaml\n│   │   ├───task-manifest.csv\n│   │   ├───tool-manifest.csv\n│   │   ├───workflow-manifest.csv\n│   │   ├───agents/\n│   │   │   ├───bmm-analyst.customize.yaml\n│   │   │   ├───bmm-architect.customize.yaml\n│   │   │   ├───bmm-dev.customize.yaml\n│   │   │   ├───bmm-pm.customize.yaml\n│   │   │   ├───bmm-sm.customize.yaml\n│   │   │   ├───bmm-tea.customize.yaml\n│   │   │   ├───bmm-tech-writer.customize.yaml\n│   │   │   ├───bmm-ux-designer.customize.yaml\n│   │   │   ├───cis-brainstorming-coach.customize.yaml\n│   │   │   ├───cis-creative-problem-solver.customize.yaml\n│   │   │   ├───cis-design-thinking-coach.customize.yaml\n│   │   │   ├───cis-innovation-strategist.customize.yaml\n│   │   │   ├───cis-presentation-master.customize.yaml\n│   │   │   ├───cis-storyteller.customize.yaml\n│   │   │   └───core-bmad-master.customize.yaml\n│   │   └───ides/\n│   │       └───claude-code.yaml\n│   ├───bmm/\n│   │   ├───config.yaml\n│   │   ├───README.md\n│   │   ├───agents/\n│   │   │   ├───analyst.md\n│   │   │   ├───architect.md\n│   │   │   ├───dev.md\n│   │   │   ├───pm.md\n│   │   │   ├───sm.md\n│   │   │   ├───tea.md\n│   │   │   ├───tech-writer.md\n│   │   │   └───ux-designer.md\n│   │   ├───docs/\n│   │   │   ├───agents-guide.md\n│   │   │   ├───brownfield-guide.md\n│   │   │   ├───enterprise-agentic-development.md\n│   │   │   ├───faq.md\n│   │   │   ├───glossary.md\n│   │   │   ├───party-mode.md\n│   │   │   ├───quick-spec-flow.md\n│   │   │   ├───quick-start.md\n│   │   │   ├───README.md\n│   │   │   ├───scale-adaptive-system.md\n│   │   │   ├───test-architecture.md\n│   │   │   ├───workflow-architecture-reference.md\n│   │   │   ├───workflow-document-project-reference.md\n│   │   │   ├───workflows-analysis.md\n│   │   │   ├───workflows-implementation.md\n│   │   │   ├───workflows-planning.md\n│   │   │   ├───workflows-solutioning.md\n│   │   │   └───images/\n│   │   │       ├───workflow-method-greenfield.excalidraw\n│   │   │       └───workflow-method-greenfield.svg\n│   │   ├───teams/\n│   │   │   ├───default-party.csv\n│   │   │   └───team-fullstack.yaml\n│   │   ├───testarch/\n│   │   │   ├───tea-index.csv\n│   │   │   └───knowledge/\n│   │   │       ├───ci-burn-in.md\n│   │   │       ├───component-tdd.md\n│   │   │       ├───contract-testing.md\n│   │   │       ├───data-factories.md\n│   │   │       ├───email-auth.md\n│   │   │       ├───error-handling.md\n│   │   │       ├───feature-flags.md\n│   │   │       ├───fixture-architecture.md\n│   │   │       ├───network-first.md\n│   │   │       ├───nfr-criteria.md\n│   │   │       ├───playwright-config.md\n│   │   │       ├───probability-impact.md\n│   │   │       ├───risk-governance.md\n│   │   │       ├───selective-testing.md\n│   │   │       ├───selector-resilience.md\n│   │   │       ├───test-healing-patterns.md\n│   │   │       ├───test-levels-framework.md\n│   │   │       └───test-priorities-matrix.md\n│   │   │       └───...\n│   │   └───workflows/\n│   │       ├───1-analysis/\n│   │       ├───2-plan-workflows/\n│   │       ├───3-solutioning/\n│   │       ├───4-implementation/\n│   │       ├───diagrams/\n│   │       ├───document-project/\n│   │       ├───techdoc/\n│   │       ├───testarch/\n│   │       └───workflow-status/\n│   ├───cis/\n│   │   ├───config.yaml\n│   │   ├───README.md\n│   │   ├───agents/\n│   │   │   ├───brainstorming-coach.md\n│   │   │   ├───creative-problem-solver.md\n│   │   │   ├───design-thinking-coach.md\n│   │   │   ├───innovation-strategist.md\n│   │   │   ├───presentation-master.md\n│   │   │   ├───README.md\n│   │   │   └───storyteller.md\n│   │   ├───teams/\n│   │   │   ├───creative-squad.yaml\n│   │   │   └───default-party.csv\n│   │   └───workflows/\n│   │       ├───README.md\n│   │       ├───design-thinking/\n│   │       ├───innovation-strategy/\n│   │       ├───problem-solving/\n│   │       └───storytelling/\n│   ├───core/\n│   │   ├───config.yaml\n│   │   ├───agents/\n│   │   │   ├───bmad-master.md\n│   │   │   └───bmad-web-orchestrator.agent.xml\n│   │   ├───resources/\n│   │   │   └───excalidraw/\n│   │   ├───tasks/\n│   │   │   ├───adv-elicit-methods.csv\n│   │   │   ├───advanced-elicitation-methods.csv\n│   │   │   ├───advanced-elicitation.xml\n│   │   │   ├───index-docs.xml\n│   │   │   ├───validate-workflow.xml\n│   │   │   └───workflow.xml\n│   │   ├───tools/\n│   │   │   └───shard-doc.xml\n│   │   └───workflows/\n│   │       ├───brainstorming/\n│   │       └───party-mode/\n│   └───docs/\n│       ├───claude-code-instructions.md\n│       └───gemini-instructions.md\n├───.claude/\n│   └───commands/\n│       └───bmad/\n│           ├───bmm/\n│           ├───cis/\n│           └───core/\n├───.gemini/\n│   ├───settings.json\n│   └───commands/\n│       ├───bmad-agent-bmm-analyst.toml\n│       ├───bmad-agent-bmm-architect.toml\n│       ├───bmad-agent-bmm-dev.toml\n│       ├───bmad-agent-bmm-pm.toml\n│       ├───bmad-agent-bmm-sm.toml\n│       ├───bmad-agent-bmm-tea.toml\n│       ├───bmad-agent-bmm-tech-writer.toml\n│       ├───bmad-agent-bmm-ux-designer.toml\n│       ├───bmad-agent-cis-brainstorming-coach.toml\n│       ├───bmad-agent-cis-creative-problem-solver.toml\n│       ├───bmad-agent-cis-design-thinking-coach.toml\n│       ├───bmad-agent-cis-innovation-strategist.toml\n│       ├───bmad-agent-cis-README.toml\n│       ├───bmad-agent-cis-storyteller.toml\n│       ├───bmad-agent-core-bmad-master.toml\n│       ├───bmad-task-bmm-daily-standup.toml\n│       ├───bmad-task-core-adv-elicit.toml\n│       ├───bmad-task-core-index-docs.toml\n│       ├───bmad-task-core-validate-workflow.toml\n│       ├───bmad-task-core-workflow.toml\n│       └───run-agent-task.toml\n├───.git/...\n├───.log/\n│   └───gemini-conversation-1761730241054.json\n├───.logging/\n│   ├───.gitignore\n│   ├───api-viewer.html\n│   ├───api-viewer.html.bak\n│   ├───process-api-requests.py\n│   ├───README.md\n│   ├───requirements.txt\n│   ├───server.py\n│   ├───server.py.backup\n│   ├───telemetry.md\n│   ├───truncate.py\n│   ├───watcher.py\n│   └───requests/\n│       ├───2025-10-30_13-56-42-min-session.json\n│       └───2025-10-30_15-01-07-9a677c74-eb73-4845-a828-04697838a5a2.json\n├───.vscode/\n│   ├───launch.json\n│   ├───settings.json\n│   └───tasks.json\n└───docs/\n    ├───bmm-workflow-status.yaml\n    ├───brainstorming-session-results-2025-11-09.md\n    ├───project-brief.md\n    ├───project-plan.md\n    ├───research-technical-2025-11-09.md\n    ├───images/\n    │   └───bmad-workflow.svg\n    └───stories/\n        └───.gitkeep\n\nReminder: Do not return an empty response when a tool call is required.\n\nMy setup is complete. I will provide my first command in the next turn."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Here is the user's editor context as a JSON object. This is for your information only.\n```json\n{\n  \"activeFile\": {\n    \"path\": \"/home/eirik/ibe160/SG-418/docs/project-plan.md\",\n    \"cursor\": {\n      \"line\": 30,\n      \"character\": 6\n    }\n  },\n  \"otherOpenFiles\": [\n    \"/home/eirik/ibe160/SG-418/docs/project-brief.md\"\n  ]\n}\n```"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "generate an image"
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "session.id": "b928d620-e60c-4223-ade3-16eef454b1b7",
+      "installation.id": "03cffe84-3d8a-44a3-bf52-9d6cefcb2c67",
+      "interactive": true,
+      "user.email": "eirikmalmemoltubak@gmail.com",
+      "event.name": "gemini_cli.api_response",
+      "event.timestamp": "2025-11-25T10:56:57.675Z",
+      "model": "gemini-2.5-pro",
+      "duration_ms": 8888,
+      "input_token_count": 10020,
+      "output_token_count": 13,
+      "cached_content_token_count": 1656,
+      "thoughts_token_count": 65,
+      "tool_token_count": 0,
+      "total_token_count": 10098,
+      "prompt_id": "b928d620-e60c-4223-ade3-16eef454b1b7########0",
+      "auth_type": "oauth-personal",
+      "status_code": 200,
+      "response_text": [
+        {
+          "candidates": [
+            {
+              "content": {
+                "role": "model",
+                "parts": [
+                  {
+                    "thought": true,
+                    "text": "**Initiating Clarification Strategy**\n\nI've determined that the user wants an image but hasn't provided any specifics. My next step is to directly solicit those details. I'll prompt the user for the subject of the desired image.\n\n\n"
+                  }
+                ]
+              }
+            }
+          ],
+          "usageMetadata": {
+            "trafficType": "ON_DEMAND"
+          },
+          "modelVersion": "gemini-2.5-pro",
+          "responseId": "e0c011794c608eff"
+        },
+        {
+          "candidates": [
+            {
+              "content": {
+                "role": "model",
+                "parts": [
+                  {
+                    "thoughtSignature": "CiQB4/H/XmzcAREPDOA3RBuFJdeDa4r7YWmOxXwALsjzpgWGLPsKegHj8f9eTYfbDkbdhqa4b4vZ2n6gMHnfArAZE/mqPfDsfPz1ptEmnvtX/cjd8NAh6aqRaGwKkb9adOV5UnT5Hb+sS0uB2Yp9WWVUGS7Oxqjn6ap22CLhdWuA8ZB49gOmx4BpswctLkI7M/r63IC0OvBS+LYK1gRU5GGvCm8B4/H/XkYOX7/YMRDZrVmEdyBbQ+llXRjU8rZyq7usCkGEp40iFJqLoOzstlmoOxzJCgYVVAacohjlowDPjGJOBKyESmZC6ajEmc3Bypr845F7kXLAqv4UEPBsSeJF5FnpsO1VMwS/DP/aSv1YOfAKkwEB4/H/Xq6AL5Q6ukA5l2pAemdqXL16Wckctl4afY0ow8usr2zvDOVZz/+GJU/Ak0Wwa/DLuDRdAcVlf4k8hRwp3IUFd/sgoje9mqIO6qJuOB9lo0Nzb6kgwTJbRVdoQ74+FSgQhqSOHEsGlHyRBuh4iM9b0xwSqE1QZD4566QG1tEzfVgQCzX0lm3i4JbMz4DN3ao=",
+                    "text": "I can do that. What would you like an image of?"
+                  }
+                ]
+              },
+              "finishReason": "STOP"
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 10020,
+            "candidatesTokenCount": 13,
+            "totalTokenCount": 10098,
+            "cachedContentTokenCount": 1656,
+            "trafficType": "ON_DEMAND",
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 10020
+              }
+            ],
+            "cacheTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 1656
+              }
+            ],
+            "candidatesTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 13
+              }
+            ],
+            "thoughtsTokenCount": 65
+          },
+          "modelVersion": "gemini-2.5-pro",
+          "responseId": "e0c011794c608eff"
+        }
+      ],
+      "http.status_code": 200
+    },
+    "error": null
+  },
+  {
+    "request": {
+      "session.id": "b928d620-e60c-4223-ade3-16eef454b1b7",
+      "installation.id": "03cffe84-3d8a-44a3-bf52-9d6cefcb2c67",
+      "interactive": true,
+      "user.email": "eirikmalmemoltubak@gmail.com",
+      "event.name": "gemini_cli.api_request",
+      "event.timestamp": "2025-11-25T10:57:03.815Z",
+      "model": "gemini-2.5-flash",
+      "prompt_id": "b928d620-e60c-4223-ade3-16eef454b1b7########1",
+      "request_text": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "This is the Gemini CLI. We are setting up the context for our chat.\nToday's date is Tuesday, November 25, 2025 (formatted according to the user's locale).\nMy operating system is: linux\nThe project's temporary directory is: /home/eirik/.gemini/tmp/b9bf3dee141354013465820fa9ef778df11c35ad18dc0f8e9f9e0e004536d9f8\nI'm currently working in the directory: /home/eirik/ibe160/SG-418\nHere is the folder structure of the current working directories:\n\nShowing up to 200 items (files + folders). Folders or files indicated with ... contain more items not shown, were ignored, or the display limit (200 items) was reached.\n\n/home/eirik/ibe160/SG-418/\n├───.gitignore\n├───proposal.md\n├───README.md\n├───.bmad/\n│   ├───_cfg/\n│   │   ├───agent-manifest.csv\n│   │   ├───files-manifest.csv\n│   │   ├───manifest.yaml\n│   │   ├───task-manifest.csv\n│   │   ├───tool-manifest.csv\n│   │   ├───workflow-manifest.csv\n│   │   ├───agents/\n│   │   │   ├───bmm-analyst.customize.yaml\n│   │   │   ├───bmm-architect.customize.yaml\n│   │   │   ├───bmm-dev.customize.yaml\n│   │   │   ├───bmm-pm.customize.yaml\n│   │   │   ├───bmm-sm.customize.yaml\n│   │   │   ├───bmm-tea.customize.yaml\n│   │   │   ├───bmm-tech-writer.customize.yaml\n│   │   │   ├───bmm-ux-designer.customize.yaml\n│   │   │   ├───cis-brainstorming-coach.customize.yaml\n│   │   │   ├───cis-creative-problem-solver.customize.yaml\n│   │   │   ├───cis-design-thinking-coach.customize.yaml\n│   │   │   ├───cis-innovation-strategist.customize.yaml\n│   │   │   ├───cis-presentation-master.customize.yaml\n│   │   │   ├───cis-storyteller.customize.yaml\n│   │   │   └───core-bmad-master.customize.yaml\n│   │   └───ides/\n│   │       └───claude-code.yaml\n│   ├───bmm/\n│   │   ├───config.yaml\n│   │   ├───README.md\n│   │   ├───agents/\n│   │   │   ├───analyst.md\n│   │   │   ├───architect.md\n│   │   │   ├───dev.md\n│   │   │   ├───pm.md\n│   │   │   ├───sm.md\n│   │   │   ├───tea.md\n│   │   │   ├───tech-writer.md\n│   │   │   └───ux-designer.md\n│   │   ├───docs/\n│   │   │   ├───agents-guide.md\n│   │   │   ├───brownfield-guide.md\n│   │   │   ├───enterprise-agentic-development.md\n│   │   │   ├───faq.md\n│   │   │   ├───glossary.md\n│   │   │   ├───party-mode.md\n│   │   │   ├───quick-spec-flow.md\n│   │   │   ├───quick-start.md\n│   │   │   ├───README.md\n│   │   │   ├───scale-adaptive-system.md\n│   │   │   ├───test-architecture.md\n│   │   │   ├───workflow-architecture-reference.md\n│   │   │   ├───workflow-document-project-reference.md\n│   │   │   ├───workflows-analysis.md\n│   │   │   ├───workflows-implementation.md\n│   │   │   ├───workflows-planning.md\n│   │   │   ├───workflows-solutioning.md\n│   │   │   └───images/\n│   │   │       ├───workflow-method-greenfield.excalidraw\n│   │   │       └───workflow-method-greenfield.svg\n│   │   ├───teams/\n│   │   │   ├───default-party.csv\n│   │   │   └───team-fullstack.yaml\n│   │   ├───testarch/\n│   │   │   ├───tea-index.csv\n│   │   │   └───knowledge/\n│   │   │       ├───ci-burn-in.md\n│   │   │       ├───component-tdd.md\n│   │   │       ├───contract-testing.md\n│   │   │       ├───data-factories.md\n│   │   │       ├───email-auth.md\n│   │   │       ├───error-handling.md\n│   │   │       ├───feature-flags.md\n│   │   │       ├───fixture-architecture.md\n│   │   │       ├───network-first.md\n│   │   │       ├───nfr-criteria.md\n│   │   │       ├───playwright-config.md\n│   │   │       ├───probability-impact.md\n│   │   │       ├───risk-governance.md\n│   │   │       ├───selective-testing.md\n│   │   │       ├───selector-resilience.md\n│   │   │       ├───test-healing-patterns.md\n│   │   │       ├───test-levels-framework.md\n│   │   │       └───test-priorities-matrix.md\n│   │   │       └───...\n│   │   └───workflows/\n│   │       ├───1-analysis/\n│   │       ├───2-plan-workflows/\n│   │       ├───3-solutioning/\n│   │       ├───4-implementation/\n│   │       ├───diagrams/\n│   │       ├───document-project/\n│   │       ├───techdoc/\n│   │       ├───testarch/\n│   │       └───workflow-status/\n│   ├───cis/\n│   │   ├───config.yaml\n│   │   ├───README.md\n│   │   ├───agents/\n│   │   │   ├───brainstorming-coach.md\n│   │   │   ├───creative-problem-solver.md\n│   │   │   ├───design-thinking-coach.md\n│   │   │   ├───innovation-strategist.md\n│   │   │   ├───presentation-master.md\n│   │   │   ├───README.md\n│   │   │   └───storyteller.md\n│   │   ├───teams/\n│   │   │   ├───creative-squad.yaml\n│   │   │   └───default-party.csv\n│   │   └───workflows/\n│   │       ├───README.md\n│   │       ├───design-thinking/\n│   │       ├───innovation-strategy/\n│   │       ├───problem-solving/\n│   │       └───storytelling/\n│   ├───core/\n│   │   ├───config.yaml\n│   │   ├───agents/\n│   │   │   ├───bmad-master.md\n│   │   │   └───bmad-web-orchestrator.agent.xml\n│   │   ├───resources/\n│   │   │   └───excalidraw/\n│   │   ├───tasks/\n│   │   │   ├───adv-elicit-methods.csv\n│   │   │   ├───advanced-elicitation-methods.csv\n│   │   │   ├───advanced-elicitation.xml\n│   │   │   ├───index-docs.xml\n│   │   │   ├───validate-workflow.xml\n│   │   │   └───workflow.xml\n│   │   ├───tools/\n│   │   │   └───shard-doc.xml\n│   │   └───workflows/\n│   │       ├───brainstorming/\n│   │       └───party-mode/\n│   └───docs/\n│       ├───claude-code-instructions.md\n│       └───gemini-instructions.md\n├───.claude/\n│   └───commands/\n│       └───bmad/\n│           ├───bmm/\n│           ├───cis/\n│           └───core/\n├───.gemini/\n│   ├───settings.json\n│   └───commands/\n│       ├───bmad-agent-bmm-analyst.toml\n│       ├───bmad-agent-bmm-architect.toml\n│       ├───bmad-agent-bmm-dev.toml\n│       ├───bmad-agent-bmm-pm.toml\n│       ├───bmad-agent-bmm-sm.toml\n│       ├───bmad-agent-bmm-tea.toml\n│       ├───bmad-agent-bmm-tech-writer.toml\n│       ├───bmad-agent-bmm-ux-designer.toml\n│       ├───bmad-agent-cis-brainstorming-coach.toml\n│       ├───bmad-agent-cis-creative-problem-solver.toml\n│       ├───bmad-agent-cis-design-thinking-coach.toml\n│       ├───bmad-agent-cis-innovation-strategist.toml\n│       ├───bmad-agent-cis-README.toml\n│       ├───bmad-agent-cis-storyteller.toml\n│       ├───bmad-agent-core-bmad-master.toml\n│       ├───bmad-task-bmm-daily-standup.toml\n│       ├───bmad-task-core-adv-elicit.toml\n│       ├───bmad-task-core-index-docs.toml\n│       ├───bmad-task-core-validate-workflow.toml\n│       ├───bmad-task-core-workflow.toml\n│       └───run-agent-task.toml\n├───.git/...\n├───.log/\n│   └───gemini-conversation-1761730241054.json\n├───.logging/\n│   ├───.gitignore\n│   ├───api-viewer.html\n│   ├───api-viewer.html.bak\n│   ├───process-api-requests.py\n│   ├───README.md\n│   ├───requirements.txt\n│   ├───server.py\n│   ├───server.py.backup\n│   ├───telemetry.md\n│   ├───truncate.py\n│   ├───watcher.py\n│   └───requests/\n│       ├───2025-10-30_13-56-42-min-session.json\n│       └───2025-10-30_15-01-07-9a677c74-eb73-4845-a828-04697838a5a2.json\n├───.vscode/\n│   ├───launch.json\n│   ├───settings.json\n│   └───tasks.json\n└───docs/\n    ├───bmm-workflow-status.yaml\n    ├───brainstorming-session-results-2025-11-09.md\n    ├───project-brief.md\n    ├───project-plan.md\n    ├───research-technical-2025-11-09.md\n    ├───images/\n    │   └───bmad-workflow.svg\n    └───stories/\n        └───.gitkeep\n\nReminder: Do not return an empty response when a tool call is required.\n\nMy setup is complete. I will provide my first command in the next turn."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Here is the user's editor context as a JSON object. This is for your information only.\n```json\n{\n  \"activeFile\": {\n    \"path\": \"/home/eirik/ibe160/SG-418/docs/project-plan.md\",\n    \"cursor\": {\n      \"line\": 30,\n      \"character\": 6\n    }\n  },\n  \"otherOpenFiles\": [\n    \"/home/eirik/ibe160/SG-418/docs/project-brief.md\"\n  ]\n}\n```"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "generate an image"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "thoughtSignature": "CiQB4/H/XmzcAREPDOA3RBuFJdeDa4r7YWmOxXwALsjzpgWGLPsKegHj8f9eTYfbDkbdhqa4b4vZ2n6gMHnfArAZE/mqPfDsfPz1ptEmnvtX/cjd8NAh6aqRaGwKkb9adOV5UnT5Hb+sS0uB2Yp9WWVUGS7Oxqjn6ap22CLhdWuA8ZB49gOmx4BpswctLkI7M/r63IC0OvBS+LYK1gRU5GGvCm8B4/H/XkYOX7/YMRDZrVmEdyBbQ+llXRjU8rZyq7usCkGEp40iFJqLoOzstlmoOxzJCgYVVAacohjlowDPjGJOBKyESmZC6ajEmc3Bypr845F7kXLAqv4UEPBsSeJF5FnpsO1VMwS/DP/aSv1YOfAKkwEB4/H/Xq6AL5Q6ukA5l2pAemdqXL16Wckctl4afY0ow8usr2zvDOVZz/+GJU/Ak0Wwa/DLuDRdAcVlf4k8hRwp3IUFd/sgoje9mqIO6qJuOB9lo0Nzb6kgwTJbRVdoQ74+FSgQhqSOHEsGlHyRBuh4iM9b0xwSqE1QZD4566QG1tEzfVgQCzX0lm3i4JbMz4DN3ao=",
+              "text": "I can do that. What would you like an image of?"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "dog"
+            }
+          ]
+        }
+      ]
+    },
+    "response": {
+      "session.id": "b928d620-e60c-4223-ade3-16eef454b1b7",
+      "installation.id": "03cffe84-3d8a-44a3-bf52-9d6cefcb2c67",
+      "interactive": true,
+      "user.email": "eirikmalmemoltubak@gmail.com",
+      "event.name": "gemini_cli.api_response",
+      "event.timestamp": "2025-11-25T10:57:05.790Z",
+      "model": "gemini-2.5-flash",
+      "duration_ms": 1975,
+      "input_token_count": 10034,
+      "output_token_count": 36,
+      "cached_content_token_count": 0,
+      "thoughts_token_count": 37,
+      "tool_token_count": 0,
+      "total_token_count": 10107,
+      "prompt_id": "b928d620-e60c-4223-ade3-16eef454b1b7########1",
+      "auth_type": "oauth-personal",
+      "status_code": 200,
+      "response_text": [
+        {
+          "candidates": [
+            {
+              "content": {
+                "role": "model",
+                "parts": [
+                  {
+                    "thoughtSignature": "Ci8B4/H/Xv6PxA/v/1j9FtSRb8R7Eyqf4ELBxlEmBH4YQaTh0iVLgqRHUabNvLnP1QpcAePx/15SRPRTsvZqfDz+1PdVaUkUN6Hbve7iQPJNjIsOVeL16eT3FmSl77tG7z7mCEs0EcSswPBK8Vs8NDu3LejvgdSA+XkQ21ULZbhtMek1lqTQB5US8MgbUxUKaQHj8f9eah1+moe8pA1HaRp7vNw9c5omKbZwq7S6WZadVAeq3UYkf8uND+fspbf1y/YI1dB+LAv7HKPtPOUKn7uXdHvNV71aTHeXA+80ABQ41P+/vGOFpOFL+NC4HJiDfWmEtJWg4Yvw3w==",
+                    "functionCall": {
+                      "name": "run_shell_command",
+                      "args": {
+                        "description": "Generating a photorealistic image of a dog using nanobanana.",
+                        "command": "nanobanana /image generate --prompt \"photorealistic image of a dog\""
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "usageMetadata": {
+            "trafficType": "ON_DEMAND"
+          },
+          "modelVersion": "gemini-2.5-flash",
+          "responseId": "5f99869a5e2035af"
+        },
+        {
+          "candidates": [
+            {
+              "content": {
+                "role": "model",
+                "parts": [
+                  {
+                    "text": ""
+                  }
+                ]
+              },
+              "finishReason": "STOP"
+            }
+          ],
+          "usageMetadata": {
+            "promptTokenCount": 10034,
+            "candidatesTokenCount": 36,
+            "totalTokenCount": 10107,
+            "trafficType": "ON_DEMAND",
+            "promptTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 10034
+              }
+            ],
+            "candidatesTokensDetails": [
+              {
+                "modality": "TEXT",
+                "tokenCount": 36
+              }
+            ],
+            "thoughtsTokenCount": 37
+          },
+          "modelVersion": "gemini-2.5-flash",
+          "responseId": "5f99869a5e2035af"
+        }
+      ],
+      "http.status_code": 200
+    },
+    "error": null
+  }
+]
