@@ -50,22 +50,21 @@ Vi valgte en moderne "tech stack" optimalisert for både ytelse, skalerbarhet, u
 
 ### 2.4 Utviklingsfaser
 
+Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her. 
+Se vedlegget for prompting for samtaler med Gemini CLI.
+Se project-plan.md i vedlegget for prosjektoppgaven for de viktigste kommandoene vi kjørte (ikke inkl. Fase 0, da filen ikke eksisterte).
+
+
 **Fase 1: Discovery**
 Vi lagde Proposal, brainstormet, gjorde research og lagde Project Brief ved å følge BMAD-rammeverket. Vi instruerte KI, men tok selv endelige beslutninger og fulgte Gemini tett opp. 
 
 Vi brukte denne fasen til å definere kjernekonseptet "Subjective Economic Value". Vi brukte KI til å brainstorme hvordan kulturelle variabler (som "risikovilje", "kollektivisme", "tidspreferanse") kunne representeres i en system-prompt. Her fungerte AI-en som en kreativ sparringspartner, en "Brainstorming Coach", som hjalp oss å krystallisere ideene våre fra løse tanker til konkrete spesifikasjoner.
 
-Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
-
 **Fase 2: Planning**
-Vi lagde PRD og UX gjennom BMAD-rammeverket. Vi fikk store problemer med å få PRD til å være i riktig format og samsvare med de tidligere dokumentene. Vi fikk også store problemer med UX-designer, da den stoppet etter første steg. Vi fikk ikke 2.5 Pro til å fortsette der den slapp, men 3.0 Pro klarte dette nesten umiddelbart og reddet oss fra å være stuck lenge. PRD-en så vi delvis gjennom, mens vi valgte UX-farge ut ifra KI-ens forslag. UX-type (design direction) valgte Gemini selv, men vi var fortrolig med valgte, så vi gjorde ikke om på det.
-
-Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
+Vi lagde PRD og UX gjennom BMAD-rammeverket. Vi fikk store problemer med å få PRD til å være i riktig format og samsvare med de tidligere dokumentene. Vi fikk også store problemer med UX-designer, da den stoppet etter første steg. Vi fikk ikke 2.5 Pro til å fortsette der den slapp, men 3.0 Pro klarte dette nesten umiddelbart. PRD-en så vi delvis gjennom, mens vi valgte UX-farge ut ifra KI-ens forslag. UX-type (design direction) valgte Gemini selv, men vi var fortrolig med valget, så vi gjorde ikke om på det.
 
 **Fase 3: Solutioning**
 Vi lagde Architecture, Epics og kjørte en Implementation Readiness sjekk. Dette gjorde vi helt uten å se gjennom filene som ble produsert, da vi hadde byttet til Gemini 3.0 Pro og fant at den var mye mer pålitelig. Vi hadde også behov for å bli fort ferdig med denne delen slik at vi hadde mer å skrive om i refleksjonrapporten.
-
-Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
 
 **Fase 4: Utvikling**
 Ikke påbegynt.
@@ -133,7 +132,7 @@ KI var utvilsomt en netto positiv faktor, men den endret arbeidets natur fundame
 Hvem eier egentlig handlingene til en autonom agent? I AIES vil vi se agenter ta uventede beslutninger. En agent kan for eksempel nekte å handle med en annen fordi den har blitt "fornærmet" i en tidligere forhandlingsrunde. Dette er isåfall emergent adferd vi ikke eksplisitt hadde kodet, men som oppstår fra samspillet mellom system-prompten og modellens treningsdata.
 I en simulering er dette fascinerende og ufarlig. Men hvis slike agenter styrte ekte penger eller tok beslutninger om lån og forsikring, ville ansvarsspørsmålet vært akutt. Er det Eirik som skrev koden, Sofus som skrev prompten, Google som trente modellen, eller agenten selv som er ansvarlig? Vi mener at ansvaret til syvende og sist alltid må ligge hos menneskene som deployerer systemet. "Algoritmen gjorde det" er ingen gyldig unnskyldning, verken i dag eller i fremtiden.
 
-### 5.2 Transparens og åpenhet
+### 5.2 Transparens
 Vi synes man bør være åpne om at programmer er bygget med tung AI-assistanse. Koden bærer preg av det (kommentarer, struktur) uansett. Å skjule dette ville vært uærlig mot brukerne og mot fagfeltet. I fremtiden tror vi "AI-assisted" vil bli en standard merkelapp på programvare, en slags varedeklarasjon som sier noe om hvordan produktet er blitt til, i hvert fall så lenge som det ikke er standarden. Hvis man ikke er åpen om dette, kan det komme frem store sikkerhetsmangler hvis koden ikke reviewes riktig.
 
 ### 5.3 Påvirkning på læring og kompetanse
@@ -225,8 +224,7 @@ Dette prosjektet har vært en skikkelig øyeåpner. Jeg måtte fort lære både 
 - **GitHub Repository:** https://github.com/IBE160/SG-418
 - **Prompting:** https://github.com/IBE160/SG-418/tree/main/prompting
 - **Dokumentasjon:** Se `docs/`-mappen i repoet for detaljerte arkitektur- og designvalg.
-- **Prompt-logg:** En samling av de mest kritiske system-promptene finnes i `SG-418/prompts/`.
 
 ---
 
-**Ordantall:** Ca. 3500 ord.
+**Ordantall:** Ca. 4500 ord.
