@@ -5,165 +5,201 @@
 **Gruppenavn:** 418
 
 **Gruppemedlemmer:**
-- Eirik Malme Moltubak (Gruppeleder) - eirik.m.moltubak@himolde.no
-- Vigfus Alexander Robertsson (The genius behind it all) - vigfus.a.robertsson@himolde.no
-- Sofus August Hvattum - sofus.a.hvattum@himolde.no
+- Eirik Malme Moltubak - 252105/eirik.m.moltubak@himolde.no
+- Vigfus Alexander Robertsson - 250082/vigfus.a.robertsson@himolde.no
+- Sofus August Hvattum - 252103/sofus.a.hvattum@himolde.no
 
-**Institusjon:** Høgskolen i Molde (HiMolde)
-**Dato:** 02.12.2025
-
----
-
-## 2. Innledning: Speil i Speil
-
-Å utvikle **AIES (AI Economy Simulator)** har vært en øvelse i dyp rekursjon, en teknologisk "speil i speil"-opplevelse. Vi er tre mennesker – studenter ved Høgskolen i Molde – som bruker en kunstig intelligens (Gemini CLI/BMAD) til å programmere en simulering av andre kunstige intelligenser som forsøker å etterligne menneskelig økonomisk adferd. Grensene mellom hvem som er skaper, hvem som er verktøy, og hvem som er skapning har til tider blitt visket ut i løpet av disse ukene.
-
-Denne rapporten er ikke bare en teknisk oppsummering av kodebasen eller en logg over Git-commits. Den er et "post-mortem" fra et team som har stått i frontlinjen av det som føles som en revolusjon innen programvareutvikling. Vi har følt på både den svimlende hastigheten AI kan tilby – følelsen av å ha superkrefter – og den frustrerende, nesten eksistensielle friksjonen som oppstår når maskinens rigide logikk kolliderer med menneskelig intensjon og kreativitet.
-
-Vårt mål med AIES var ambisiøst: Vi ville gi økonomiske agenter en "subjektivitet" – en sjel, om du vil. Vi ville bevege oss bort fra de sterile, matematiske modellene hvor *homo economicus* alltid tar rasjonelle valg basert på perfekt informasjon. I stedet ville vi bruke Large Language Models (LLMs) til å simulere agenter som kunne misforstå, bli fornærmet, føle grådighet eller vise altruisme basert på kulturelle parametere.
-
-Ironisk nok tvang denne prosessen oss til å konfrontere begrensningene i vår egen "AI-partner", Gemini CLI, på en måte som speilet utfordringene våre virtuelle agenter møtte i sin digitale markedsplass. Vi møtte hallusinasjoner som lignet på agentenes feilvurderinger, kommunikasjonssvikt som minnet om agentenes forhandlingsbrudd, og et desperat behov for struktur som parallellførte samfunnets behov for lover og regler.
+**Dato:** 05.12.2025
 
 ---
 
-## 3. Utviklingsprosessen
+## 2. Utviklingsprosessen
 
-### 3.1 Oversikt over prosjektet
+### 2.1 Oversikt over prosjektet
 **AIES (AI Economy Simulator)** er et forsøk på å fange den unnvikende "menneskelige faktoren" i økonomiske modeller. Tradisjonelle simuleringer bruker ofte hardkodede regler hvor pris møter kvantum på en forutsigbar, deterministisk måte. Vårt mål var å injisere subjektivitet. Ved å bruke LLMer som "hjernen" i hver agent, har vi skapt et system hvor økonomiske transaksjoner ikke bare handler om tall, men om komplekse forhandlinger, kulturelle preferanser og irrasjonelle valg. Vi ønsket å se om vi kunne fremprovosere emergent adferd: Ville agenter utvikle tillit over tid? Ville de diskriminere basert på "kultur" eller tidligere erfaringer? AIES er et laboratorium for å utforske disse spørsmålene, bygget på en moderne web-arkitektur.
 
-### 3.2 Arbeidsmetodikk og Samarbeid ved HiMolde
+### 2.2 Arbeidsmetodikk
 Selv om prosjektet er tungt teknologisk og virtuelt, var det fysiske samarbeidet sentralt. Vi arbeidet tett sammen fysisk på campus ved Høgskolen i Molde. Vi okkuperte grupperom, tegnet arkitektur på tavler, og diskuterte høylytt når AI-en hallusinerte.
 
-**Eirik Malme Moltubak** fungerte som **gruppeleder**. Han hadde det overordnede ansvaret for fremdrift, arkitekturvalg og kvalitetssikring. Det var Eirik som holdt i tømmene når vi holdt på å spore av, og som tok de endelige avgjørelsene når vi stod ved tekniske veisklier. Likevel var strukturen i gruppen flat og preget av intens samhandling. Vi satt ofte skulder ved skulder ("pair programming") med Gemini CLI som en tredje, usynlig partner på skjermen.
+**Eirik Malme Moltubak** fungerte som **gruppeleder**. Han hadde det overordnede ansvaret for fremdrift, arkitekturvalg og kvalitetssikring. Det var Eirik som holdt i tømmene når vi holdt på å spore av, og som tok de endelige avgjørelsene når vi stod ved tekniske veisklier. Likevel var strukturen i gruppen flat og preget av intens samhandling.
 
-Vi organiserte oss etter en tilpasset versjon av **BMAD-rammeverket** (Building Multi-Agent Development), men med en erkjennelse av at rollene våre ville flyte over i hverandre i møte med AI-en:
+Vi organiserte oss etter en tilpasset versjon av **BMAD-rammeverket** (Breakthrough Method for Agile Ai Driven Development), men med en erkjennelse av at rollene våre ville flyte over i hverandre i møte med AI-en:
 
 *   **Oppgavefordeling:**
-    *   **Eirik (Lead Architect & Backend):** Ansvarlig for systemets integritet, FastAPI-backend, og Pydantic-modellene som holdt alt sammen. Han sørget for at koden var modulær og vedlikeholdbar. IMPORTANT (TODO THIS IS COMPLETELY WRONG)
-    *   **Vigfus (Frontend & UX Lead):** Vigfus (Teknisk Feasibility & KI-Kvalitetssikring): Vigfus hadde hovedansvaret for å sikre prosjektets tekniske gjennomførbarhet (feasibility) og robusthet. Basert på tidligere erfaring fra Brunvoll og IT VGS, bidro han med tidlig risikovurdering og overordnet teknisk tenkning for å validere arkitekturvalgene. Han fungerte som gruppens kritiske KI-reviewer, og brukte sin erfaring med KI-verktøy til å nøye se over koden AI-en leverte for å avdekke logiske feil og brudd på beste praksis. I tillegg bidro han vesentlig til prompt engineering-arbeidet, spesielt med fokus på å strukturere instruksjonene for å oppnå forutsigbare og korrekte resultater fra språkmodellene.
+    *   **Eirik (Prompt Master & Project Lead):** ???
+    *   **Vigfus (Teknisk Feasibility & KI-Kvalitetssikring):** Hadde hovedansvaret for å sikre prosjektets tekniske gjennomførbarhet (feasibility) og robusthet. Basert på tidligere erfaring fra Brunvoll og IT-linja på Romsdal VGS, bidro han med tidlig risikovurdering og overordnet teknisk tenkning for å validere arkitekturvalgene. Han fungerte som gruppens kritiske KI-reviewer, og brukte sin erfaring med KI-verktøy til å nøye se over koden AI-en leverte for å avdekke logiske feil og brudd på beste praksis. I tillegg bidro han vesentlig til prompt engineering-arbeidet, spesielt med fokus på å strukturere instruksjonene for å oppnå forutsigbare og korrekte resultater fra språkmodellene.
 
-    *   **Sofus (Agent Logic & Prompt Engineer):** Fordypet seg i "hjernen" til agentene. Han skrev system-promptene, finjusterte forhandlingslogikken, og jobbet med å gi agentene distinkte personligheter. IMPORTANT (TODO THIS IS COMPLETELY WRONG)
+    *   **Sofus (Agent Logic & Agent Prompt Engineer):** Fordypet seg i "hjernen" til agentene. Han skrev system-promptene, finjusterte forhandlingslogikken, og jobbet med å gi agentene distinkte personligheter.
 
-*   **Samarbeidsverktøy:** Vi brukte GitHub for versjonskontroll og Discord for asynkron kommunikasjon og deling av kode-snippets, men den viktigste "commiten" skjedde ofte muntlig over en kaffekopp i kantina på HiMolde.
+*   **Samarbeidsverktøy:** Vi brukte GitHub for versjonskontroll og Discord for asynkron kommunikasjon og planlegging, men de viktigste "commitene" skjedde fysisk på grupperom på HiMolde.
 
-*   **KI som partner:** Gemini CLI fungerte som vår "Juniorutvikler på steroider". Vi brukte den til alt fra å generere boilerplate-kode til å diskutere dype arkitektoniske valg. Vi lærte raskt at denne partneren krevde streng ledelse; vi var arkitektene, den var mureren. Uten våre tegninger, bygget den skjeve vegger.
+*   **KI som partner:** Gemini CLI med BMAD-rammeverket fungerte som vår Analyst, Project Manager, UX Designer, Architect, Scrum-Master, Developer og Brainstorming Assistant i ett. Vi brukte den til alt fra å generere boilerplate-kode til å diskutere dype arkitektoniske valg. Vi lærte raskt at denne partneren krevde streng ledelse; vi var arkitektene, den var mureren. Uten våre tegninger, bygget den skjeve vegger.
 
-### 3.3 Teknologi og verktøy
-Vi valgte en moderne "tech stack" optimalisert for både ytelse, skalerbarhet og utviklingshastighet:
+### 2.3 Teknologi og verktøy
+Vi valgte en moderne "tech stack" optimalisert for både ytelse, skalerbarhet, utviklingshastighet, og ikke minst KI-kompatibelhet. Vi hadde kunnskap fra før om hvilke språk og libs LLMer er best (mest trent) og valgte derfor:
 - **Frontend:** Next.js (React) med Tailwind CSS. Valgt for komponentbasert arkitektur og rask styling.
 - **Backend:** Python med FastAPI. Valgt spesifikt for sin asynkrone ytelse og det rike økosystemet for AI-integrasjon.
-- **AI-Integrasjon:** **Pydantic-AI**. Dette var et kritisk teknologivalg for å tvinge ustrukturerte LLM-svar inn i strenge, validerbare datamodeller.
-- **Kjernemodell:** Vi startet med **Gemini 2.5 Pro**, men migrerte kritisk til **Gemini 3.0 Pro** midtveis i prosjektet – en beslutning som reddet arkitekturen vår.
+- **Database:** Ingen. Database ble valgt bort pga. manglende behov og for å unngå unødvendig komplikasjon.
+- **AI-Integrasjon:** Pydantic-AI. Dette var et kritisk teknologivalg for å tvinge ustrukturerte LLM-svar inn i strenge, validerbare datamodeller.
+- **Kjernemodell:** Vi startet med **Gemini 2.5 Pro**, men migrerte kritisk til **Gemini 3.0 Pro** så snart den kom ut gjennom et tilbud om gratis prøvemåned – en beslutning som reddet prosjektet og tålmodigheten vår.
+- **KI-verktøy:** Gemini CLI
+- **Andre verktøy:** VS Code/Cursor, BMAD
 
-### 3.4 Utviklingsfaser
+### 2.4 Utviklingsfaser
 
-**Fase 1: Planlegging & Konseptualisering**
+**Fase 1: Discovery**
+Vi lagde Proposal, brainstormet, gjorde research og lagde Project Brief.
+
+???
+
 Vi brukte denne fasen til å definere kjernekonseptet "Subjective Economic Value". Vi brukte KI til å brainstorme hvordan kulturelle variabler (som "risikovilje", "kollektivisme", "tidspreferanse") kunne representeres i en system-prompt. Her fungerte AI-en som en kreativ sparringspartner, en "Brainstorming Coach", som hjalp oss å krystallisere ideene våre fra løse tanker til konkrete spesifikasjoner.
 
-**Fase 2: Utvikling & "The Grind"**
-Dette var fasen hvor teorien møtte virkeligheten. Vi opplevde rask fremdrift på det initielle oppsettet ("scaffolding"), men støtte på betydelig friksjon når kompleksiteten økte. Det var her vi virkelig følte på begrensningene i verktøyet. Vi måtte iterere hyppig, ofte kjøre `/clear` i CLI-en for å nullstille en forvirret AI, og lære oss kunsten å "debugge prompter" like mye som vi debugget Python-kode. Det føltes ofte som å lære opp en ekstremt talentfull, men distré lærling.
+**Fase 2: Planning**
+Vi lagde PRD og UX gjennom BMAD-rammeverket.
+
+???
+
+**Fase 3: Solutioning**
+Vi lagde Architecture, Epics og kjørte en Implementation Readiness sjekk.
+
+???
+
+**Fase 4: Utvikling**
+Ikke påbegynt.
 
 ---
 
-## 4. Utfordringer og løsninger: Kampen mot Entropien
+## 3. Utfordringer og løsninger
 
-### 4.1 Tekniske utfordringer
+### 3.1 Tekniske utfordringer
 
-**Utfordring 1: Kontekst-tap og "Gullfisk-hukommelse"**
-En av de mest frustrerende opplevelsene tidlig i prosjektet (med Gemini 2.5 Pro) var følelsen av at AI-en hadde "gullfisk-hukommelse".
-*   **Problem:** Når vi ba den endre en funksjon i backend, glemte den ofte konsekvensene for frontend. Den kunne finne på å endre navnet på et API-endepunkt uten å oppdatere React-komponenten som kalte på det. Den hallusinerte import-stier til filer som ikke eksisterte, eller refererte til variabler den selv hadde slettet i forrige "turn". Det var som å bygge et korthus der underlaget hele tiden skiftet.
-*   **Løsning:** Den store forløsningen kom da vi oppgraderte til **Gemini 3.0 Pro**. Forskjellen var natt og dag. 3.0 Pro viste en evne til å "holde" hele arkitekturen i minnet (større kontekstvindu og bedre "reasoning") og resonnere rundt avhengigheter på et nivå 2.5 ikke maktet.
-*   **Lærdom:** For systemarkitektur er modellens "IQ" (resonneringsevne) kritisk. Man kan ikke bygge komplekse systemer med modeller som bare er gode på å generere enkeltstående funksjoner.
-
-**Utfordring 2: Strukturering av det Ustrukturerte (Kaoskontroll)**
+**Utfordring 1: Strukturering av det Ustrukturerte (Kaoskontroll)**
 *   **Problem:** LLMer er i sin natur kreative og uforutsigbare språkmaskiner. De er diktere, ikke regnskapsførere. For å kjøre en stabil simulering trengte vi at agentene alltid svarte i perfekt, maskinlesbart JSON-format. En "kreativ" feil i en JSON-nøkkel, eller en ekstra kommentar i outputen, kunne krasje hele simuleringen ("JSONDecodeError").
 *   **Løsning:** Vi implementerte **Pydantic-AI**. Dette biblioteket fungerte som en "tvangstrøye" for modellen. Ved å definere strenge Pydantic-modeller (klasser i Python) for all output, kunne vi garantere at uansett hvor "kreativ" agenten var i innholdet sitt, var *formen* alltid validert. Pydantic-AI injiserte skjemaene direkte i prompten og håndterte validering og re-prompting automatisk hvis modellen feilet.
-*   **Refleksjon:** Dette var vendepunktet for stabiliteten i systemet. Det lærte oss at nøkkelen til robust AI-programvare ligger i grensesnittet mellom den "myke" teksten og den "harde" koden.
+*   **KI sin rolle:** Gemini hjalp oss med research for å finne tak i løsninger på problemet. Vi endte opp med den flotte løsningen Pydantic-AI på grunn av KI sin kunnskap.
 
-### 4.2 Samarbeidsutfordringer: Menneske vs. Maskin
-Den største utfordringen var å synkronisere vår mentale modell av koden med AI-ens modell. Når tre mennesker jobber på samme kodebase, oppstår det konflikter. Når en fjerde "person" (AI-en) også gjør endringer – ofte omfattende refaktoreringer på sekunder – ble Git-konfliktene til tider marerittaktige.
-Vi opplevde at AI-en av og til overskrev andres arbeid fordi den ikke hadde oppdatert sin "kunnskap" om filen før den gjorde endringer. Vi løste dette ved å innføre streng disiplin:
-1.  Alltid `git pull` før man starter en sesjon med AI-en.
-2.  Alltid be AI-en lese filen (`read_file`) før den får lov til å endre den.
-3.  Vi innførte en uformell "file lock"-disiplin på grupperommet: "Jeg prompter på `agent_logic.py` nå, ikke rør den!"
+**Utfordring 2: Innstallering**
+*   **Problem:** Innstallering av Gemini-CLI og andre nødvendige programmer på Sofus sin Windows-maskin var svært problematisk. Vi fikk igjen og igjen error under installeringen av NodeJS og NPM.
+*   **Løsning:** Løsningen ble til slutt å samles fysisk slik at han kunne jobbe med prompting uten å selv ha CLI innstallert.
+*   **KI sin rolle:** Vi ga KI-en errorkoden flere ganger. Først, ga den oss tips om ulike kommandoer og generelle debugging-tips vi kunne gjøre. Uten KI hadde dette tatt mye lenger tid. Etter vi hadde gjort alle tipsene den hadde, kom vi til slutt til et punkt hvor KI-en fant noe viktig i error-koden: Sofus hadde ikke nok ledig plass til å innstallere CLI.
 
-### 4.3 KI-spesifikke utfordringer
+### 3.2 Samarbeidsutfordringer
+Vi slet i begynnelsen med å fokusere når vi jobbet sammen online. Vi løste dette ved å bestemme oss for å heller møtes fysisk på HiMolde. Det ble til tider vanskelig å finne tidspunkt når alle var ledige til å jobbe fysisk, men vi løste dette med å legge planer lenger frem i tid og være aktiv på vår kommunikasjonsplatform Discord.
+
+### 3.3 KI-spesifikke utfordringer
 *   **Looping:** Vi opplevde at CLI-en kunne låse seg i en "fix-loop". Den kjørte en test, fant en feil, prøvde å rette den, introduserte en ny feil, og gjentok syklusen. Dette kunne fortsette i det uendelige hvis vi ikke grep inn. Løsningen var å være en streng arbeidsleder: Stoppe prosessen, kjøre `/clear`, og gi en ny, mer presis instruks som angrep roten av problemet, ikke symptomet.
-*   **Dokumentasjons-drift:** AI-en elsker å kode, men hater å oppdatere dokumentasjon. Koden utviklet seg raskt, mens `README.md` og arkitektur-dokumentene forble statiske. Vi måtte utvikle en spesifikk rutine: *"Review @old-doc and fix any inconsistencies with @new-doc"*. Dette måtte kjøres som en egen "vaktmester-oppgave" jevnlig.
+*   **Gullfisk-hukommelse:** Den hallusinerte stier til filer som ikke eksisterte, eller lagde nye dokumenter som ikke var i samsvar med de tidligere. Det var som å bygge et korthus der underlaget hele tiden skiftet. Den store forløsningen kom da vi oppgraderte til **Gemini 3.0 Pro**. Forskjellen var natt og dag. 3.0 Pro viste en evne til å "holde" hele arkitekturen i minnet og resonnere rundt avhengigheter på et nivå 2.5 ikke maktet. Før vi fikk byttet til 3.0 Pro var løsningen å alltid referere direkte til de viktigste tidligere dokumentene (@old_doc.md) og gå flere runder med KI-en etter den hadde laget dokumentet, hvor vi sjekket at alt stemte med tidligere dokumentasjon. For eksempel repeterte vi "Fix all inconsistencies with @old_doc.md and @new_doc.md by updating @new_doc.md" og "/clear" helt til KI-en bare fant små rettskrivingsfeil flere ganger på rad.
 
 ---
 
-## 5. Kritisk vurdering av KI sin påvirkning
+## 4. Kritisk vurdering av KI sin påvirkning
 
-### 5.1 Fordeler: Superkrefter og Akselerasjon
+### 4.1 Fordeler med KI-assistanse
 
 **Effektivitet og produktivitet:**
-KI fungerte som en enorm kraftmultiplikator. Oppgaver som vanligvis er tidkrevende og kjedelige – som å sette opp CRUD-endepunkter i FastAPI, skrive Pydantic-modeller med 20 felter, eller lage responsive React-komponenter – gikk unna på brøkdeler av tiden. Vi kunne produsere en mengde kode som ville vært umulig for tre studenter på denne tiden manuelt. Vi estimerer at vi sparte 60-70% av tiden på ren koding. Dette frigjorde tid til å fokusere på *hva* vi ville bygge, logikken i simuleringen, og de økonomiske teoriene, heller enn å krangle med syntaks.
+KI fungerte som en enorm kraftmultiplikator. Oppgaver som vanligvis er tidkrevende og kjedelige – som å brainstorme, lage UX design og PRD – gikk unna på brøkdeler av tiden. Kunnskapen vi hadde om dette var i tillegg svært begrenset, men med KI ble det etter vår forståelse veldig bra.
 
 **Læring og forståelse:**
-Paradoksalt nok lærte vi mer om arkitektur ved å kode *mindre*. Fordi AI-en tok seg av "grunt work", ble vi tvunget opp i et helikopterperspektiv. Vi kunne ikke lenger bare flikke på en funksjon; vi måtte forstå hvordan hele systemet hang sammen for å kunne instruere AI-en korrekt. Vi ble tvunget til å tenke som systemarkitekter. Hvis du ikke kan forklare arkitekturen din tydelig til en AI, forstår du den ikke godt nok selv.
+Paradoksalt nok lærte vi mer om arkitektur ved å kode *mindre*. Fordi AI-en tok seg av "grunt work", ble vi tvunget opp i et helikopterperspektiv. Vi kunne ikke lenger bare flikke på en funksjon; vi måtte forstå hvordan hele systemet hang sammen for å kunne instruere AI-en korrekt. Vi ble tvunget til å tenke som systemarkitekter. Hvis du ikke kan forklare arkitekturen din tydelig til en AI, forstår du den ikke godt nok selv. Ved å bruke AI til lette, men tunge oppgaver (som refactoring) kunne vi bruke med tid på å lære. 
 
-### 5.2 Ulemper: Tap av Kontroll og "Sjel"
+**Kvalitet på koden:**
+Siden vi ikke rakk å begynne på selve utviklingsdelen har vi ikke fått sett på dette konkret. Likevel kan vi trekke konklusjoner fra prosjektdokumentasjonen og arbeidet KI produserte. KI genererte som regel gode utkast og forslag som traff hovedlinjene i våre idéer, men det var også synlig at kvaliteten ikke alltid var på toppnivå. For eksempel leverte Gemini 2.5 Pro flere flotte designforslag i ux-design-directions.html, men klarte ikke å lage en fungerende dropdown hvor alle alternativer var tilgjengelige. Feilen ble først rettet da vi gikk over til Gemini 3.0 Pro, som løste utfordringen uten problemer. Dette gir oss en indikasjon på at koden KI-en genererer kan være varierende i kvalitet og avhengig av modellens modenhet.
 
-**Kreativitet og problemløsning:**
-Vi merket en snikende tendens til at AI-en "pushet" oss mot standardløsninger. Når vi ba om et designforslag, valgte den ofte trygge, generiske valg ("Bootstrap-looken" eller standard Tailwind-komponenter). Den valgte farger, layouts og fontstørrelser uten å spørre. Dette førte til en form for "design-automasjon" hvor vi mistet noe av den kreative kontrollen. Vi måtte aktivt kjempe imot ("Make it look more sci-fi/cyberpunk") for å gi applikasjonen særpreg.
+### 4.2 Begrensninger og ulemper
 
 **Kvalitet og pålitelighet:**
-Vi lærte den harde veien at vi aldri kunne stole blindt på koden. Selv om den så riktig ut ved første øyekast, kunne den inneholde logiske brister (f.eks. en løkke som aldri terminerer under spesifikke forhold) eller sikkerhetshull. Koden var ofte syntaktisk perfekt, men semantisk meningsløs. Dette skapte en ny type angst: "Virker dette egentlig, eller ser det bare ut som det virker?"
+Her så vi tydelige svakheter med AI-generert innhold, særlig med eldre modellversjoner. Et konkret eksempel var at Gemini 2.5 Pro ofte leverte løsninger som så riktige ut på overflaten, men viste seg å ha skjulte mangler – som ikke-fungerende komponenter eller logikkfeil i pseudo-kode eller struktur. I designforslaget nevnt over laget KI-en en dropdown som så ut til å være komplett, men i praksis fungerte den ikke slik brukeren forventet; man fikk rett og slett ikke opp alle valgmuligheter. Vi oppdaget slike feil fordi vi manuelt inspiserte og testet forslagene – det var nødvendig å være kritisk og dobbeltsjekke at KI hadde forstått og løst oppgaven i henhold til kravspesifikasjonene våre. Hver gang vi fant slike feil, måtte vi gå tilbake til prompten, spesifisere kravene enda tydeligere, eller i verste fall løse problemet selv. Det var først med oppgraderingen til Gemini 3.0 Pro at flere av disse pålitelighetsproblemene ble borte og løsningene ble gjennomgående mer robuste og presise. KI kan dermed levere dårlige eller ufullstendige svar – og det oppdages som regel gjennom nitid testing, kritisk vurdering og sammenligning mot våre opprinnelige behov. Vår erfaring er at man alltid må regne med ekstra runder med kontroll, validering og re-prompter for å sikre at produktet faktisk fungerer – uansett hvor imponerende svaret fra KI kan virke ved første blikk. 
 
-### 5.3 Sammenligning: Med og uten KI
-Uten KI ville dette prosjektet sett helt annerledes ut. Vi ville sannsynligvis ikke ha nådd målet om en fungerende MVP med denne kompleksiteten. Vi ville brukt uker på å sette opp infrastrukturen og debugge enkle skrivefeil. Vi ville kanskje hatt en enklere simulering, men med tryggere, håndskrevet kode. Med KI fikk vi en mer avansert, funksjonsrik applikasjon, men med en kodebase som føles litt mer fremmed for oss. Sluttresultatet er teknisk overlegent, men kanskje litt mindre "håndverksmessig polert" på mikronivå.
+**Avhengighet og forståelse:**
+Vi brukte KI til alt unntatt proposal.md. Vi har ikke sett gjennom alle dokumentene, men kvalitetssikret dem i manuelle runder med "Check for inconsistencies with @old_doc". Vi ble avhengig av KI for å lage de videre dokumentene, da vi ikke visste hva som stod i de forrige. KI sin utviklingshastighet gjorde det vanskelig å sette av tid til å forstå dokumentene våre, da det var lettere å bare gå videre og stole på KI.
 
-### 5.4 Samlet vurdering
+**Kreativitet og problemløsning:**
+Vi merket en snikende tendens til at AI-en "pushet" oss mot standardløsninger. Når vi ba om et designforslag, valgte den ofte trygge, generiske valg ("Bootstrap-looken" eller standard Tailwind-komponenter). Den valgte farger, layouts og fontstørrelser uten å spørre. Dette førte til en form for "design-automasjon" hvor vi mistet noe av den kreative kontrollen. Vi måtte aktivt kjempe imot ("Make it look more ...") for å gi applikasjonen særpreg.
+
+### 4.3 Sammenligning: Med og uten KI
+Uten KI ville dette prosjektet sett helt annerledes ut. Vi ville sannsynligvis ikke ha nådd målet om en fungerende MVP med denne kompleksiteten. Vi ville brukt uker på å sette opp infrastrukturen og debugge enkle skrivefeil. Vi ville kanskje hatt en enklere simulering, men med tryggere, håndskrevet kode. Med KI fikk vi en mer avansert, funksjonsrik applikasjon, men med en kodebase som føles litt mer fremmed for oss. Sluttresultatet er teknisk overlegent, men kanskje litt mindre "håndverksmessig polert" på mikronivå. Da vi ikke har kunnskap om biblioteken måtte vi også ha endret til mer enkle rammeverk, eller brukt masse tid på å sette oss inn i dette.
+
+### 4.4 Samlet vurdering
 KI var utvilsomt en netto positiv faktor, men den endret arbeidets natur fundamentalt. Vi gikk fra å være "coders" til å være "code reviewers" og "prompt engineers". Den viktigste lærdommen er at AI ikke erstatter kompetanse; den krever en *høyere* grad av overordnet systemforståelse for å brukes effektivt. Du kan ikke be en AI bygge et hus hvis du ikke vet forskjellen på en bærebjelke og en lettvegg.
 
 ---
 
-## 6. Etiske implikasjoner
+## 5. Etiske implikasjoner
 
-### 6.1 "Ghost in the Machine" og Ansvar
-Hvem eier egentlig handlingene til en autonom agent? I AIES så vi agenter ta uventede beslutninger. En agent nektet for eksempel å handle med en annen fordi den hadde blitt "fornærmet" i en tidligere forhandlingsrunde (noe den husket via konteksthistorikken). Dette var emergent adferd vi ikke eksplisitt hadde kodet, men som oppstod fra samspillet mellom system-prompten og modellens treningsdata.
-I en simulering er dette fascinerende og ufarlig. Men hvis slike agenter styrte ekte penger eller tok beslutninger om lån og forsikring, ville ansvarsspørsmålet vært akutt. Er det Eirik som skrev koden, Sofus som skrev prompten, Google som trente modellen, eller agenten selv som er ansvarlig? Vi mener at ansvaret til syvende og sist alltid må ligge hos menneskene som deployerer systemet. "Algoritmen gjorde det" er ingen gyldig unnskyldning.
+### 5.1 "Ghost in the Machine" og Ansvar
+Hvem eier egentlig handlingene til en autonom agent? I AIES vil vi se agenter ta uventede beslutninger. En agent kan for eksempel nekte å handle med en annen fordi den har blitt "fornærmet" i en tidligere forhandlingsrunde. Dette er isåfall emergent adferd vi ikke eksplisitt hadde kodet, men som oppstår fra samspillet mellom system-prompten og modellens treningsdata.
+I en simulering er dette fascinerende og ufarlig. Men hvis slike agenter styrte ekte penger eller tok beslutninger om lån og forsikring, ville ansvarsspørsmålet vært akutt. Er det Eirik som skrev koden, Sofus som skrev prompten, Google som trente modellen, eller agenten selv som er ansvarlig? Vi mener at ansvaret til syvende og sist alltid må ligge hos menneskene som deployerer systemet. "Algoritmen gjorde det" er ingen gyldig unnskyldning, verken i dag eller i fremtiden.
 
-### 6.2 Transparens og Åpenhet
-Vi har valgt å være åpne om at AIES er bygget med tung AI-assistanse. Koden bærer preg av det (kommentarer, struktur). Å skjule dette ville vært uærlig mot brukerne og mot fagfeltet. I fremtiden tror vi "AI-assisted" vil bli en standard merkelapp på programvare, en slags varedeklarasjon som sier noe om hvordan produktet er blitt til.
+### 5.2 Transparens og Åpenhet
+Vi synes man bør være åpne om at programmer er bygget med tung AI-assistanse. Koden bærer preg av det (kommentarer, struktur) uansett. Å skjule dette ville vært uærlig mot brukerne og mot fagfeltet. I fremtiden tror vi "AI-assisted" vil bli en standard merkelapp på programvare, en slags varedeklarasjon som sier noe om hvordan produktet er blitt til, i hvert fall så lenge som det ikke er standarden. Hvis man ikke er åpen om dette, kan det komme frem store sikkerhetsmangler hvis koden ikke reviewes riktig.
 
-### 6.3 Påvirkning på læring og kompetanse: Døden for Juniorutvikleren?
-Dette prosjektet har vekket en bekymring hos oss. Det er en reell fare for at juniorutviklere mister den grunnleggende "mengdetreningen" man får av å skrive kode manuelt, feile, google, og prøve igjen. Hvis man alltid får svaret servert på et sølvfat av en AI, utvikler man da den intuisjonen som trengs for å oppdage når AI-en tar feil?
-Vi klarte å redde prosjektet når AI-en feilet (f.eks. med 2.5 Pro-problemene) fordi vi *hadde* grunnleggende kunnskap. Vi visste hvordan HTTP-kall fungerer, hvordan React-state oppfører seg. Uten denne "tause kunnskapen" hadde vi strandet. Vi frykter en fremtid hvor utviklere kan *bestille* kode, men ikke *forstå* den.
+### 5.3 Påvirkning på læring og kompetanse
+Dette prosjektet har vekket en bekymring hos oss. Det er en reell fare for at juniorutviklere mister den grunnleggende "mengdetreningen" man får av å skrive kode manuelt, feile, google/stack-overflowe, og prøve igjen. Hvis man alltid får svaret servert på et sølvfat av en AI, utvikler man da den intuisjonen som trengs for å oppdage når AI-en tar feil?
+Vi klarte å redde prosjektet når AI-en feilet (f.eks. med 2.5 Pro-problemene) fordi vi *hadde* grunnleggende kunnskap. Vi visste hvordan filsystemet fungerer, hvordan editorer oppfører seg. Uten denne "tause kunnskapen" hadde vi strandet. Vi frykter en fremtid hvor utviklere kan *bestille* kode, men ikke *forstå* den.
+
+### 5.4 Arbeidsmarkedet
+KI kommer til å endre IT-arbeidsmarkedet fundamentalt de neste årene. Oppgaver som tidligere krevde flere utviklere, kan delvis automatiseres eller utføres mye raskere ved hjelp av generative modeller. Dette innebærer at etterspørselen etter tradisjonelle "kode-slave"-roller (f.eks. enkel frontend-utvikling eller rutinepreget backendl og testskriving) vil avta. Samtidig vil behovet for fagfolk som evner å styre, kvalitetssikre og orkestrere KI-drevne utviklingsprosesser øke kraftig.
+
+Roller som "prompt engineer", "AI project lead", "data curator" og "system-arkitekt" vil bli mye viktigere. Det vil være et økt behov for personer som kan validere og verifisere KI-generert kode, bidra med domenekunnskap, og tolke krav og kompleks forretningslogikk i samarbeid med KI-modeller. Dybdeforståelse for systemarkitektur og evnen til å skjønne "hvorfor" fremfor "hvordan" blir sentralt.
+
+Samtidig tror vi at kreative, tverrfaglige roller vil styrkes. Grensene mellom utvikler, designer, analytiker og produkteier viskes delvis ut – alle må forstå hvordan KI jobber, og hvordan man best leder den mot ønsket mål. Det er ikke lenger nok å kunne et rammeverk eller et språk; man må forstå prinsipper for maskinlæring, datastrukturer, domeneproblemer og etikk.
+
+For vår egen del utfordret prosjektet oss til å tenke nytt om karrierevalget. I en KI-drevet verden vil behovet for ren "håndkoding" bli mindre, men behovet for overordnet forståelse, problemløsningsevne og evnen til å sette menneskelig retning (Purpose, ikke bare Task) bli viktigere. Vi ser også at de mest engasjerende rollene i fremtiden vil handle om samspill mellom menneske og maskin, og at KI er et kraftfullt verktøy – men brukeren av verktøyet må være en kritisk, nysgjerrig og ansvarlig leder.
+
+### 5.5 Datasikkerhet og personvern
+I prosjektet måtte vi vurdere hvilke data vi delte med KI-verktøyene, spesielt siden LLMene vi brukte (Google Gemini via CLI) i utgangspunktet kan være trente på store, åpne datasett og potensielt kan lagre eller analysere innhold vi sender inn. Det meste vi delte var ikke-personspesifikt: prosjektbeskrivelser, kravspesifikasjoner, arkitekturtegninger og kodeutkast. Vi delte aldri sensitiv persondata, men det var et etisk poeng å vurdere hva som faktisk havnet i promptene vi sendte.
+
+Potensielle risikoer oppstår hvis man skulle kopiert inn autentiske brukerdata eller tilgangsnøkler – noe vi aktivt unngikk. Koden som genereres av KI kan dessuten inneholde "usynlige" sikkerhetshull: bibliotekvalg, ukritisk bruk av tredjeparter, eller svak implementering (f.eks. hardkodede nøkler eller manglende inputvalidering). 
+
+For å tenke riktig omkring sikkerhet ved bruk av KI i utvikling, er det viktig å:
+- Aldri dele ekte brukerinformasjon eller sensitive data i promptene.
+- Validere at kode KI-en genererer ikke inneholder åpenbare hull (eksponerte nøkler, sårbare biblioteker).
+- Sørge for at alle KI-genererte features testes og kvalitetssikres mot sikkerhetskrav før produksjon.
+- Tenke over at dokumentasjon, konfigurasjonsfiler og systemdiagrammer også kan inneholde sensitiv informasjon.
+
+Vårt generelle råd er å behandle alt man sender til eksterne KI-tjenester som om det var "semi-offentlig". Sannsynligheten for misbruk er liten i praksis, men konsekvensen kan være stor – og ansvaret ligger alltid hos utviklerne selv. Vi mener dette gir verdifulle sekundærlærdommer ikke bare om KI, men om generelt sikkerhetsarbeid i digitale prosjekter.
 
 ---
 
-## 7. Teknologiske implikasjoner
+## 6. Teknologiske implikasjoner
 
-### 7.1 Kodekvalitet og Vedlikehold
-KI-generert kode kan være et mareritt å vedlikeholde over tid. Den mangler ofte den helhetlige "tanken" eller signaturen til en menneskelig forfatter. Vi ser at koden vår er blitt noe fragmentert; ulike moduler følger litt ulike mønstre basert på hvilken dag og i hvilken kontekst de ble generert. Uten streng og kontinuerlig refaktorering (utført av mennesker), råtner AI-kode raskt. Streng code review er ikke lenger bare en kvalitetssjekk, det er en overlevelsesmekanisme for kodebasen.
+### 6.1 Kodekvalitet og vedlikehold
+KI-generert kode kan være et mareritt å vedlikeholde over tid. Den mangler ofte den helhetlige "tanken" eller signaturen til en menneskelig forfatter. Vi har i tidliegere prosjekt sett at koden vår er blitt noe fragmentert; ulike moduler følger litt ulike mønstre basert på hvilken dag og i hvilken kontekst de ble generert. Uten streng og kontinuerlig refaktorering (utført av mennesker), råtner AI-kode raskt. Streng code review er ikke lenger bare en kvalitetssjekk, det er en overlevelsesmekanisme for kodebasen.
 
-### 7.2 Standarder og Beste Praksis
-AI-en er flink til å følge standarder *hvis* den blir bedt om det eksplisitt. Ved å bruke Pydantic og Type Hints tvang vi frem en høy standard. Men overlatt til seg selv, kan den fort falle tilbake på utdaterte biblioteker den har sett mye av i treningsdataene sine, eller bruke "quick fixes" som er dårlig praksis (f.eks. hardkoding av verdier). Man må vite hva "beste praksis" er for å kunne kreve det av AI-en.
+### 6.2 Standarder og Beste Praksis
+AI-en er flink til å følge standarder *hvis* den blir bedt om det eksplisitt. Ved å bruke Pydantic og Type Hints, eller MCP-servere med nyeste dokumentasjon kan man tvinge fram en høy standard. Men overlatt til seg selv, kan den fort falle tilbake på utdaterte biblioteker den har sett mye av i treningsdataene sine, eller bruke "quick fixes" som er dårlig praksis (f.eks. hardkoding av verdier). Man må vite hva "beste praksis" er for å kunne kreve det av AI-en.
+
+### 6.3 Fremtidig utvikling
+KI vil fundamentalt endre måten vi utvikler programvare på. Man går fra å skrive alt selv til å orkestrere og validere forslag fra KI. Dette betyr at kritisk tenkning, systemforståelse og gode valideringsrutiner blir viktigere enn rene kodeferdigheter.
+
+I fremtiden tror vi at de beste utviklerne er de som både forstår teknologi og evner å stille klare krav til KI-en. Evnen til å skrive presise prompt, analysere kodeforslag, og sikre kvalitet og sikkerhet, blir mer sentralt enn å lære seg et nytt rammeverk.
+
+Vår anbefaling er: Behandle KI som en dyktig, men uforutsigbar assistent. Stol aldri blindt på løsningsforslagene, og bygg en robust praksis for gjennomgang, testing og sikkerhet. KI er et kraftfullt verktøy, men menneskelig dømmekraft er fortsatt det viktigste.
 
 ---
 
-## 8. Konklusjon og Læring
+## 7. Konklusjon og Læring
 
-### 8.1 Viktigste lærdommer fra AIES-prosjektet
+### 7.1 Viktigste lærdommer fra AIES-prosjektet
 1.  **Modellen betyr alt:** Forskjellen på Gemini 2.5 Pro og 3.0 Pro var forskjellen på fiasko og suksess for kompleks systemarkitektur. Ikke undervurder verdien av "state-of-the-art".
-2.  **Kontekst er konge:** Å forstå hvordan kontekstvinduet fungerer, og vite når man skal "cleare" minnet for å unngå forvirring, er en ny kjernekompetanse for utviklere.
+2.  **Context is King:** Å forstå hvordan kontekstvinduet fungerer, og vite når man skal "cleare" minnet for å unngå forvirring, er en ny kjernekompetanse for utviklere.
 3.  **Struktur over kaos:** For å bruke kreative, uforutsigbare LLMer i deterministiske systemer, må man bygge rigide rammer rundt dem. Pydantic-AI var vår redning.
 4.  **Ledelse er nøkkelen:** AI-en er en fantastisk arbeider, men en elendig leder. Mennesket må fortsatt sitte i førersetet og sette kursen.
 
-### 8.2 Hva ville dere gjort annerledes?
+### 7.2 Hva ville dere gjort annerledes?
 Hvis vi skulle startet prosjektet på nytt i dag, med den viten vi har nå, ville vi:
 *   Gått rett på **Gemini 3.0 Pro** fra dag én for å unngå uken med debugging av 2.5 Pro sine hallusinasjoner.
-*   Brukt mer tid innledningsvis på å definere et strengt, skriftlig designsystem (farger, fonter, komponenter) *før* vi ba AI-en generere UI-kode. Dette ville gitt et mer helhetlig visuelt uttrykk.
-*   Etablert en strengere test-drevet utvikling (TDD) fra start. Det er lettere å be en AI "skrive kode som får denne testen til å passere" enn å be den "skrive god kode".
+*   Satt oss mer inn i Agile Programming. BMAD-rammeverket bygger på dette, men var i starten ikke stabilt nok til å følge de riktige stegene videre.
+*   Bestemt en fast tid i uka da vi kunne samarbeide fysisk. Dette hadde gitt oss mer tid til å arbeide og forstå prosjektet.
 
-### 8.3 Anbefalinger til andre studenter
-*   **Ikke stol blindt på AI-en.** Les koden den genererer. Linje for linje. Forstå den.
+### 7.3 Anbefalinger til andre studenter
+*   **Ikke stol blindt på AI-en.**
 *   **Lær deg prompt engineering.** Det er det nye programmeringsspråket. Lær deg forskjellen på en null-shot og en few-shot prompt.
 *   **Behold kodingen i fingrene.** Ikke la AI-en gjøre alt. Skriv litt kode selv hver dag for å holde ferdighetene ved like.
+*   **AI er dement.** Start samtalen på nytt så fort som mulig for å cleare context-vinduet. Jo mindre context, jo bedre.
+*   **AI er et barn.** Den mister fort fokus og kan finne på de dummeste tingene hvis den ikke instrueres direkte.
 
-### 8.4 Personlige refleksjoner
+### 7.4 Personlige refleksjoner
 
 **Eirik Malme Moltubak (Gruppeleder & Arkitekt):**
 For meg har dette prosjektet handlet om kampen for ren arkitektur i møte med en entropisk kraft. Å være "Lead Architect" med en AI som hovedutvikler er som å lede et orkester hvor en av fiolinistene (AI-en) er et geni som improviserer konstant – noen ganger briljant, noen ganger katastrofalt. Min største utfordring var å håndheve disiplin. Når Gemini foreslo en "kjapp fiks" som brøt med våre separasjonsprinsipper (f.eks. direkte databasekall i frontend), måtte jeg være den som sa "nei".
@@ -180,7 +216,7 @@ Det mest tankevekkende var å se hvor lite som skal til for å endre "kulturen" 
 
 ---
 
-## 9. Vedlegg
+## 8. Vedlegg
 
 - **GitHub Repository:** https://github.com/IBE160/SG-418
 - **Dokumentasjon:** Se `docs/`-mappen i repoet for detaljerte arkitektur- og designvalg.
