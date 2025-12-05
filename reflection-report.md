@@ -26,10 +26,13 @@ Selv om prosjektet er tungt teknologisk og virtuelt, var det fysiske samarbeidet
 Vi organiserte oss etter en tilpasset versjon av **BMAD-rammeverket** (Breakthrough Method for Agile Ai Driven Development), men med en erkjennelse av at rollene våre ville flyte over i hverandre i møte med AI-en:
 
 *   **Oppgavefordeling:**
-    *   **Eirik (Prompt Master & Project Lead):** ???
+    *   **Eirik (Prompt Master & Project Lead):** Hadde det overordnede ansvaret for prosjektets fremdrift, arkitekturvalg og kvalitetssikring. Med bakgrunn fra egeninteresse for KI og erfaring fra flere praksisprosjekter, tok Eirik en ledende rolle i å koordinere samarbeidet og prompte Gemini CLI. Han overvåket alle viktige beslutninger rundt arkitektur og implementasjon, og sørget for at både menneskelige og KI-genererte bidrag holdt høy kvalitet. Han var hovedansvarlig for prompt engineering-strategien, testet ulike tilnærminger for å «styre» KI-en trygt inn mot riktige og reproduserbare svar, og tilpasset instruksjonene for å sikre at modellene forsto prosjektets formål og rammer. I tillegg hadde han ansvar for overordnet rapportering og prosjektstyring.
+
     *   **Vigfus (Teknisk Feasibility & KI-Kvalitetssikring):** Hadde hovedansvaret for å sikre prosjektets tekniske gjennomførbarhet (feasibility) og robusthet. Basert på tidligere erfaring fra Brunvoll og IT-linja på Romsdal VGS, bidro han med tidlig risikovurdering og overordnet teknisk tenkning for å validere arkitekturvalgene. Han fungerte som gruppens kritiske KI-reviewer, og brukte sin erfaring med KI-verktøy til å nøye se over koden AI-en leverte for å avdekke logiske feil og brudd på beste praksis. I tillegg bidro han vesentlig til prompt engineering-arbeidet, spesielt med fokus på å strukturere instruksjonene for å oppnå forutsigbare og korrekte resultater fra språkmodellene.
 
-    *   **Sofus (Agent Logic & Agent Prompt Engineer):** Fordypet seg i "hjernen" til agentene. Han skrev system-promptene, finjusterte forhandlingslogikken, og jobbet med å gi agentene distinkte personligheter.
+    *   **Sofus (Idémyldring & Agentlogikk):** Sofus tok en sentral lederrolle under idémyldringen, hvor han initierte og ledet mange av diskusjonene som definerte prosjektets retning og konsept. Hans evne til å utfordre etablerte ideer bidro til å løfte ambisjonsnivået i startfasen. Han finjusterte forhandlingslogikken. Sofus hadde også ansvar for å sikre samsvar mellom agentenes atferd og prosjektets grunnidé – at subjektivitet skulle skinne gjennom i simuleringen.
+
+    Bortsatt fra hovedområdene var arbeidsfordelingen flat, da vi for det meste jobben sammen fysisk på én PC da rammeverket er lineært fram til utviklingen.
 
 *   **Samarbeidsverktøy:** Vi brukte GitHub for versjonskontroll og Discord for asynkron kommunikasjon og planlegging, men de viktigste "commitene" skjedde fysisk på grupperom på HiMolde.
 
@@ -48,21 +51,21 @@ Vi valgte en moderne "tech stack" optimalisert for både ytelse, skalerbarhet, u
 ### 2.4 Utviklingsfaser
 
 **Fase 1: Discovery**
-Vi lagde Proposal, brainstormet, gjorde research og lagde Project Brief.
-
-???
+Vi lagde Proposal, brainstormet, gjorde research og lagde Project Brief ved å følge BMAD-rammeverket. Vi instruerte KI, men tok selv endelige beslutninger og fulgte Gemini tett opp. 
 
 Vi brukte denne fasen til å definere kjernekonseptet "Subjective Economic Value". Vi brukte KI til å brainstorme hvordan kulturelle variabler (som "risikovilje", "kollektivisme", "tidspreferanse") kunne representeres i en system-prompt. Her fungerte AI-en som en kreativ sparringspartner, en "Brainstorming Coach", som hjalp oss å krystallisere ideene våre fra løse tanker til konkrete spesifikasjoner.
 
-**Fase 2: Planning**
-Vi lagde PRD og UX gjennom BMAD-rammeverket.
+Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
 
-???
+**Fase 2: Planning**
+Vi lagde PRD og UX gjennom BMAD-rammeverket. Vi fikk store problemer med å få PRD til å være i riktig format og samsvare med de tidligere dokumentene. Vi fikk også store problemer med UX-designer, da den stoppet etter første steg. Vi fikk ikke 2.5 Pro til å fortsette der den slapp, men 3.0 Pro klarte dette nesten umiddelbart og reddet oss fra å være stuck lenge. PRD-en så vi delvis gjennom, mens vi valgte UX-farge ut ifra KI-ens forslag. UX-type (design direction) valgte Gemini selv, men vi var fortrolig med valgte, så vi gjorde ikke om på det.
+
+Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
 
 **Fase 3: Solutioning**
-Vi lagde Architecture, Epics og kjørte en Implementation Readiness sjekk.
+Vi lagde Architecture, Epics og kjørte en Implementation Readiness sjekk. Dette gjorde vi helt uten å se gjennom filene som ble produsert, da vi hadde byttet til Gemini 3.0 Pro og fant at den var mye mer pålitelig. Vi hadde også behov for å bli fort ferdig med denne delen slik at vi hadde mer å skrive om i refleksjonrapporten.
 
-???
+Promptene og de spesifikke stegene finnes i filene som ble automatisk logget da de er for lange til å inkludere her (se vedlegget for prompting under fase_1).
 
 **Fase 4: Utvikling**
 Ikke påbegynt.
@@ -126,11 +129,11 @@ KI var utvilsomt en netto positiv faktor, men den endret arbeidets natur fundame
 
 ## 5. Etiske implikasjoner
 
-### 5.1 "Ghost in the Machine" og Ansvar
+### 5.1 Ansvar og eierskap
 Hvem eier egentlig handlingene til en autonom agent? I AIES vil vi se agenter ta uventede beslutninger. En agent kan for eksempel nekte å handle med en annen fordi den har blitt "fornærmet" i en tidligere forhandlingsrunde. Dette er isåfall emergent adferd vi ikke eksplisitt hadde kodet, men som oppstår fra samspillet mellom system-prompten og modellens treningsdata.
 I en simulering er dette fascinerende og ufarlig. Men hvis slike agenter styrte ekte penger eller tok beslutninger om lån og forsikring, ville ansvarsspørsmålet vært akutt. Er det Eirik som skrev koden, Sofus som skrev prompten, Google som trente modellen, eller agenten selv som er ansvarlig? Vi mener at ansvaret til syvende og sist alltid må ligge hos menneskene som deployerer systemet. "Algoritmen gjorde det" er ingen gyldig unnskyldning, verken i dag eller i fremtiden.
 
-### 5.2 Transparens og Åpenhet
+### 5.2 Transparens og åpenhet
 Vi synes man bør være åpne om at programmer er bygget med tung AI-assistanse. Koden bærer preg av det (kommentarer, struktur) uansett. Å skjule dette ville vært uærlig mot brukerne og mot fagfeltet. I fremtiden tror vi "AI-assisted" vil bli en standard merkelapp på programvare, en slags varedeklarasjon som sier noe om hvordan produktet er blitt til, i hvert fall så lenge som det ikke er standarden. Hvis man ikke er åpen om dette, kan det komme frem store sikkerhetsmangler hvis koden ikke reviewes riktig.
 
 ### 5.3 Påvirkning på læring og kompetanse
@@ -202,8 +205,8 @@ Hvis vi skulle startet prosjektet på nytt i dag, med den viten vi har nå, vill
 ### 7.4 Personlige refleksjoner
 
 **Eirik Malme Moltubak (Gruppeleder & Arkitekt):**
-For meg har dette prosjektet handlet om kampen for ren arkitektur i møte med en entropisk kraft. Å være "Lead Architect" med en AI som hovedutvikler er som å lede et orkester hvor en av fiolinistene (AI-en) er et geni som improviserer konstant – noen ganger briljant, noen ganger katastrofalt. Min største utfordring var å håndheve disiplin. Når Gemini foreslo en "kjapp fiks" som brøt med våre separasjonsprinsipper (f.eks. direkte databasekall i frontend), måtte jeg være den som sa "nei".
-Jeg har lært at rollen til en seniorutvikler i fremtiden vil dreie seg mindre om å skrive selve syntaksen, og mer om *code review*, arkitektonisk styring og systemforståelse. Evnen til å lese og validere kode man ikke har skrevet selv, blir den viktigste ferdigheten. Det å oppdage at modellen konsekvent ignorerte visse instrukser i `.geminiignore` lærte meg at man aldri kan stole blindt på "black box"-magi. Det har vært en lærerik, men også utmattende prosess å være "The Human in the Loop".
+For meg har dette prosjektet handlet om kampen for ren arkitektur i møte med en entropisk kraft. Å være "Lead Architect" med en AI som hovedutvikler er som å lede et orkester hvor en av fiolinistene (AI-en) er et geni som improviserer konstant – noen ganger briljant, noen ganger katastrofalt. Min største utfordring var å håndheve disiplin. Når Gemini foreslo en "kjapp fiks" som brøt med våre idéer, måtte jeg være den som sa "nei" på en effektiv måte.
+Jeg har lært at rollen til en seniorutvikler i fremtiden vil dreie seg mindre om å skrive selve syntaksen, og mer om *code review*, arkitektonisk styring og systemforståelse. Evnen til å lese og validere kode man ikke har skrevet selv, blir den viktigste ferdigheten. Det å oppdage at modellen konsekvent ignorerte visse instrukser lærte meg at man aldri kan stole blindt på "black box"-magi. Det har vært en lærerik, men også utmattende prosess å være "The Human in the Loop".
 
 **Vigfus Alexander Robertsson (Teknisk Feasibility, Visualisering/Frontend & KI-Kvalitetssikring):**
 Min rolle var todelt. For det første fungerte jeg som det tekniske ankeret som sikret at ambisjonene i prosjektet var forankret i realiserbar kode. Med erfaring fra Brunvoll og min bakgrunn fra IT VGS, lå mitt fokus på å tenke to skritt frem: Er denne løsningen skalerbar? Vil dette skape teknisk gjeld? Jeg viet mye tid til kodegjennomgang (code review) av AI-generert kode, og brukte min tidligere erfaring med KI-verktøy til å raskt identifisere hallusinasjoner og logiske brister før de krevde omfattende omskrivning. Dette plasserte meg i grensesnittet mellom prompt engineering (hvor jeg bidro til å strukturere instruksene for presisjon) og kvalitetssikring (hvor jeg validerte utførelsen).
@@ -211,14 +214,16 @@ For det andre hadde jeg et spesielt ansvar for visualisering og frontend-impleme
 Jeg har lært at i KI-assistert programmering er det ikke lenger nok å vite hvordan man koder; man må forstå hvordan KI-en feiler for å kunne lede den riktig. Dette har understreket verdien av menneskelig intuisjon for teknisk risiko i alle lag av applikasjonen, fra API-design til datavisualisering.
 
 **Sofus August Hvattum (Logikk & Økonomi):**
-Jeg fordypet meg i selve "sjelen" til simuleringen – agentenes adferd og den underliggende økonomiske logikken. Det var jeg som kjempet mest med prompt engineering for å få agentene til å oppføre seg som troverdige økonomiske aktører og ikke bare som chatbots.
-Det mest tankevekkende var å se hvor lite som skal til for å endre "kulturen" i en hel økonomi. Ved å justere system-prompten med noen få adjektiver ("suspicious", "trusting", "aggressive"), endret hele markedsdynamikken seg dramatisk. Det fikk meg til å reflektere over hvor skjør vår egen virkelige økonomi er, basert som den er på tillit og psykologi. Arbeidet med AIES har vist meg at skillet mellom "hard" økonomi og "myk" psykologi er kunstig. Når vi bruker LLMer som agenter, får vi "the Ghost in the Machine" med på kjøpet – på godt og vondt. De er uforutsigbare, akkurat som mennesker, og det gjør dem til perfekte modeller for fremtidens samfunnsforskning.
+Dette prosjektet har vært en skikkelig øyeåpner. Jeg måtte fort lære både teknisk terminologi og KI-logikk. Å jobbe tverrfaglig tvang meg til å formulere ideene mine mye klarere, og jeg skjønte fort at teori må oversettes helt presist til konkrete regler for at KI-en faktisk skal forstå. Jeg fikk bryne meg på både prompt engineering og koding, og måtte lære meg å se hvor og hvorfor både folk og KI "feiler". Det viktigste jeg tar med meg, er hvor mye kraft det er i å kombinere strukturert økonomisk logikk med kreativ KI – men også at ingenting fungerer uten gode rammer og tydelig ledelse. Jeg føler meg tryggere teknologisk, og mer bevisst på hvor viktig det er å samarbeide på tvers av fagfelt.
+
+
 
 ---
 
 ## 8. Vedlegg
 
 - **GitHub Repository:** https://github.com/IBE160/SG-418
+- **Prompting:** https://github.com/IBE160/SG-418/tree/main/prompting
 - **Dokumentasjon:** Se `docs/`-mappen i repoet for detaljerte arkitektur- og designvalg.
 - **Prompt-logg:** En samling av de mest kritiske system-promptene finnes i `SG-418/prompts/`.
 
