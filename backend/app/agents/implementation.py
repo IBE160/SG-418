@@ -86,6 +86,7 @@ Your Wants: {self.wants}
 Your Inventory: {self.inventory}
 
 Target Agent: {target_agent_id} (Job: {target_job})
+Target Agent likely produces: {target_resource}
 
 Based on your needs and what you have in inventory, create a trade offer.
 You can offer resources from your inventory and request resources you need.
@@ -94,7 +95,7 @@ Make sure the offered_amount doesn't exceed what you have in inventory.
 Return a trade offer with:
 - offered_resource: A resource you have
 - offered_amount: How much you're offering (must be <= your inventory)
-- requested_resource: A resource you need (likely what {target_job} produces)
+- requested_resource: A resource you need (likely {target_resource} which {target_job} produces)
 - requested_amount: How much you're requesting"""
             
             result = await self.offer_agent.run(prompt)
@@ -115,13 +116,8 @@ Return a trade offer with:
                 print(f"ValidationError in generate_offer for {self.id}: {e}")
             else:
                 print(f"Error in generate_offer for {self.id}: {e}")
-            # Penalty Box: Return empty offer (Action.WAIT)
-            return {
-                "offered_resource": "",
-                "offered_amount": 0,
-                "requested_resource": "",
-                "requested_amount": 0,
-            }
+            # Penalty Box: Return None to indicate failure (Action.WAIT equivalent)
+            return None
     
     async def evaluate_offer(self, offer: Dict[str, Any], offerer_id: str) -> Dict[str, Any]:
         """Evaluate an incoming trade offer using LLM"""

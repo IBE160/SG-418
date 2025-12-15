@@ -63,6 +63,25 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "message": "AIES API",
+        "version": "0.1.0",
+        "docs": "/docs",
+        "health": "/health",
+        "endpoints": {
+            "GET /health": "Health check",
+            "GET /api/state": "Get world state",
+            "POST /api/config": "Set simulation configuration",
+            "POST /api/control/start": "Start simulation",
+            "POST /api/control/stop": "Stop simulation",
+            "GET /api/export": "Export event log as CSV"
+        }
+    }
+
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
@@ -172,8 +191,11 @@ async def start_simulation():
     if not state.agents:
         return {"status": "error", "message": "No agents configured. Please configure simulation first."}
     
-    state.is_running = True
-    set_state(state)
+    # Create a copy to avoid mutating the shared state
+    from copy import deepcopy
+    updated_state = deepcopy(state)
+    updated_state.is_running = True
+    set_state(updated_state)
     return {"status": "ok", "message": "Simulation started"}
 
 
@@ -181,8 +203,11 @@ async def start_simulation():
 async def stop_simulation():
     """Stop the simulation"""
     state = get_state()
-    state.is_running = False
-    set_state(state)
+    # Create a copy to avoid mutating the shared state
+    from copy import deepcopy
+    updated_state = deepcopy(state)
+    updated_state.is_running = False
+    set_state(updated_state)
     return {"status": "ok", "message": "Simulation stopped"}
 
 
