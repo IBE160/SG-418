@@ -61,13 +61,13 @@ development_status:
 
   epic-4: contexted
   4-1-dashboard-layout-sidebar: drafted
-  4-2-real-time-economic-graph: backlog
-  4-3-live-event-log-feed: backlog
-  4-4-agent-interaction-diagram: backlog
+  4-2-real-time-economic-graph: drafted
+  4-3-live-event-log-feed: drafted
+  4-4-agent-interaction-diagram: drafted
   epic-4-retrospective: optional
 
   epic-5: contexted
-  5-1-agent-inspector-panel-ui: backlog
-  5-2-agent-detail-data-fetching: backlog
-  5-3-export-event-log-to-csv: backlog
+  5-1-agent-inspector-panel-ui: drafted
+  5-2-agent-detail-data-fetching: drafted
+  5-3-export-event-log-to-csv: drafted
   epic-5-retrospective: optional
