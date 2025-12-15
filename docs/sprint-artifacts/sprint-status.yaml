@@ -52,7 +52,7 @@ development_status:
   epic-2-retrospective: optional
 
   epic-3: contexted
-  3-1-llm-integration-infrastructure: backlog
+  3-1-llm-integration-infrastructure: drafted
   3-2-agent-decision-trade-partner-selection: drafted
   3-3-agent-decision-generate-offer: drafted
   3-4-agent-decision-evaluate-offer: drafted
