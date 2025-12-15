@@ -1,0 +1,43 @@
+Day 1, Tick 1: Insufficient resources for trade
+Day 1, Tick 1: Insufficient resources for trade
+Day 1, Tick 1: Insufficient resources for trade
+Day 1, Tick 2: Insufficient resources for trade
+Day 1, Tick 2: Insufficient resources for trade
+Day 1, Tick 2: Traded 5 food for 10 Wood with agent-1
+Day 1, Tick 3: Trade offer rejected by agent-3: I cannot fulfill your request for 'Farm' as I do not have it to trade. Additionally, I do not currently need 'food'.
+Day 1, Tick 3: Insufficient resources for trade
+Day 1, Tick 3: Trade offer rejected by agent-1: I do not have the requested resource (10 Wood) in my inventory to complete this trade. While I would benefit from the offered food, I cannot provide the wood.
+Day 1, Tick 4: Trade offer rejected by agent-3: I do not have the requested resource (Farm) and I do not need the offered resource (food).
+Day 1, Tick 4: Insufficient resources for trade
+Day 1, Tick 4: Trade offer rejected by agent-1: I do not possess the 10 Wood that agent-3 is requesting in my current inventory. Although I need the offered food, I cannot fulfill my side of this trade.
+Day 1, Tick 5: Simulation running: 3 agents active, total value: 30.00
+Day 1, Tick 5: Trade offer rejected by agent-3: I do not have 'Farm' to offer. Additionally, I do not need or want 'food', as I already have enough and my current need is 'Wood'.
+Day 1, Tick 5: Traded 5 Wood for 5 food with agent-3
+Day 1, Tick 5: Trade offer rejected by agent-1: I do not have the 10 Wood you are requesting. Additionally, your offer is not fair as you are offering 5 Wood for 10 Wood.
+Day 1, Tick 6: Trade offer rejected by agent-3: I do not possess the requested resource (Farm), and the offered resource (food) does not align with my current needs.
+Day 1, Tick 6: Trade offer rejected by agent-3: I cannot accept this offer because I do not have the requested 5 food. My current food inventory is 0. While I do need the offered Wood, I am unable to provide the resource you are requesting.
+Day 1, Tick 6: Trade offer rejected by agent-1: I do not possess 'Woodcutt' as a tradable resource; it appears to be an action or a job rather than an item in my inventory. Therefore, I cannot fulfill your request.
+Day 1, Tick 7: Trade offer rejected by agent-3: I do not possess the requested resource ('Farm') and I do not need the offered resource ('food').
+Day 1, Tick 7: Trade offer rejected by agent-3: I cannot accept this offer because I do not possess the 'Farm' resource you are requesting. My current inventory does not include 'Farm'.
+Day 1, Tick 7: Trade offer rejected by agent-1: I do not possess the requested resource "Woodcutt", and it appears to be an invalid resource for trade.
+Day 1, Tick 8: Trade offer rejected by agent-3: I do not possess 'Farm' which you are requesting. Furthermore, I do not need 'food' as I am a farmer and produce it myself.
+Day 1, Tick 8: Trade offer rejected by agent-3: I am unable to fulfill your request for 2 Farm as I currently have 0 food in my inventory. While I would benefit from receiving 3 Wood to meet my needs, I have nothing to offer in return that you are requesting or that I am willing to part with.
+Day 1, Tick 8: Trade offer rejected by agent-1: I do not possess 'Woodcutt' as a resource in my inventory and therefore cannot fulfill the requested item in this trade. My inventory consists of 'Wood' and 'food'.
+Day 1, Tick 9: Trade offer rejected by agent-3: I do not have the requested resource (Farm) and I do not need the offered resource (food).
+Day 1, Tick 9: Trade offer rejected by agent-3: I cannot accept this offer because I do not have the requested resource (10 Farm). My current inventory of 'food' is 0, and I need the 5 Wood you are offering to fulfill my own needs.
+Day 1, Tick 9: Trade offer rejected by agent-1: I do not possess the requested resource 'Woodcutt' and therefore cannot fulfill the offer.
+Day 2, Tick 10: Day 2 begins
+Day 2, Tick 10: Simulation running: 3 agents active, total value: 30.00
+Day 2, Tick 10: Trade offer rejected by agent-3: I do not have 'Farm' to offer and I do not need 'food' at this moment. My current need is 'Wood'.
+Day 2, Tick 10: Trade offer rejected by agent-3: I am unable to accept your offer as I do not possess the requested resource 'Farm' in my current inventory. While I am in need of Wood, I cannot fulfill my part of this trade.
+Day 2, Tick 10: Trade offer rejected by agent-1: I do not have the requested resource, 'Woodcutt'.
+Day 2, Tick 11: Trade offer rejected by agent-3: Error evaluating offer: status_code: 503, model_name: gemini-2.5-flash, body: { "error": { "code": 503, "message": "The model is overloaded. Please try again later.", "status": "UNAVAILABLE" } }
+Day 2, Tick 11: Trade offer countered by agent-1
+Day 2, Tick 11: Trade offer rejected by agent-1: I do not possess the requested resource 'Woodcutt' in my inventory.
+Day 2, Tick 12: Trade offer rejected by agent-3: I do not have 'Farm' in my inventory, which is the resource agent-1 is requesting.
+Day 2, Tick 12: Trade offer rejected by agent-3: I cannot accept this offer because I do not have the requested 5 food in my inventory.
+Day 2, Tick 12: Trade offer rejected by agent-1: I do not have the requested 20 Wood. Even if I did, the offer is highly unfavorable (trading 20 Wood for 1 Wood). As a Woodcutter, I produce Wood, and my current needs are for food, not additional Wood.
+
+
+
+

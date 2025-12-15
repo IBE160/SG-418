@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { useSimulationStore } from '@/app/store/simulation';
 import { apiClient } from '@/lib/api';
@@ -12,6 +12,19 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const isRunning = useSimulationStore((state) => state.isRunning);
   const setRunning = useSimulationStore((state) => state.setRunning);
+
+  // Sync frontend state with backend state on mount
+  useEffect(() => {
+    const syncState = async () => {
+      try {
+        const state = await apiClient.getState();
+        setRunning(state.is_running || false);
+      } catch (error) {
+        console.error('Failed to sync state:', error);
+      }
+    };
+    syncState();
+  }, [setRunning]);
 
   const handleStart = async () => {
     try {
@@ -33,7 +46,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
   const handleExport = async () => {
     try {
-      const blob = await apiClient.exportEventLog();
+      const csvText = await apiClient.exportEventLog();
+      // Convert string to Blob
+      const blob = new Blob([csvText], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;

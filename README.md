@@ -42,3 +42,6 @@ This repository contains the complete AIES platform implementation, including fr
 ---
 
 *Repository for SG-418 – IBE160 Programmering med KI.*
+
+
+**api key in backend/app/agents/implementation.py line 33**

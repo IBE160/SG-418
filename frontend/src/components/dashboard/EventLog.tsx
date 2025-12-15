@@ -14,11 +14,23 @@ export function EventLog() {
         const state: WorldState = await apiClient.getState();
         
         // Convert event log to display format
-        const formattedEvents = (state.event_log || []).map((event: any) => ({
-          day: event.day || state.current_day,
-          tick: event.tick || state.current_tick,
-          description: event.description || JSON.stringify(event),
-        }));
+        const formattedEvents = (state.event_log || []).map((event: any) => {
+          // Format description from event fields
+          let description = '';
+          if (event.details) {
+            description = event.details;
+          } else if (event.action) {
+            description = `${event.action}${event.agent_id ? ` (Agent: ${event.agent_id})` : ''}${event.result ? ` - ${event.result}` : ''}`;
+          } else {
+            description = JSON.stringify(event);
+          }
+          
+          return {
+            day: event.day || state.current_day,
+            tick: event.tick || state.current_tick,
+            description: description,
+          };
+        });
 
         setEvents(formattedEvents);
       } catch (error) {

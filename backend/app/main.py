@@ -4,10 +4,65 @@ from datetime import datetime, timezone
 from contextlib import asynccontextmanager
 import asyncio
 import logging
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 from app.core.state import get_state, set_state, reset_state
 from app.core.engine import Engine
 from app.models.domain import SimulationConfig, WorldState, AgentConfig
 import json
+
+# Load environment variables from .env file
+# Find the backend directory (parent of app directory)
+backend_dir = Path(__file__).parent.parent
+env_path = backend_dir / '.env'
+
+# Try loading from explicit path first, then fallback to default behavior
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path)
+else:
+    # Fallback: try current directory and parent directories
+    load_dotenv()
+
+# Verify API key is loaded (for debugging)
+# Configure logging to ensure console output
+# Get root logger and configure it
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.INFO)
+
+# Remove existing handlers to avoid duplicates
+for handler in root_logger.handlers[:]:
+    root_logger.removeHandler(handler)
+
+# Add console handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+root_logger.addHandler(console_handler)
+
+# Also configure basicConfig as fallback
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[console_handler],
+    force=True
+)
+
+logger = logging.getLogger(__name__)
+# Test that logging works
+import sys
+print("=" * 60, file=sys.stderr)
+print("SERVER STARTUP: Logging configured", file=sys.stderr)
+print("=" * 60, file=sys.stderr)
+sys.stderr.flush()
+logger.info("Server logging initialized - errors should be visible")
+api_key = os.getenv("GEMINI_API_KEY")
+if api_key:
+    logger.info(f"GEMINI_API_KEY loaded successfully (length: {len(api_key)})")
+else:
+    logger.error(f"GEMINI_API_KEY not found! Checked path: {env_path.absolute()}")
+    logger.error("Make sure .env file exists in the backend directory with GEMINI_API_KEY set")
 
 # Global engine instance
 engine = Engine(ticks_per_day=10)  # Default: 10 ticks per day
@@ -17,12 +72,28 @@ simulation_task: asyncio.Task | None = None
 async def simulation_loop():
     """Background task that runs the simulation loop"""
     logger = logging.getLogger(__name__)
+    import sys
+    print("[SIMULATION LOOP] Started", file=sys.stderr, flush=True)
+    logger.info("Simulation loop started")
+    
     while True:
         try:
             state = get_state()
             if state.is_running:
-                # Run one tick
+                print(f"[SIMULATION LOOP] Tick {state.current_tick}, Day {state.current_day}, is_running={state.is_running}", file=sys.stderr, flush=True)
+                # Run one tick first (updates tick counter, day, etc.)
+                # This creates a copy of the state
                 updated_state = engine.tick(state)
+                
+                # Process trading for all agents on the updated state
+                # This will modify the agent dictionaries in updated_state
+                print(f"[SIMULATION LOOP] About to call process_trading", file=sys.stderr, flush=True)
+                trading_events = await engine.process_trading(updated_state)
+                print(f"[SIMULATION LOOP] process_trading returned {len(trading_events)} events", file=sys.stderr, flush=True)
+                
+                # Add trading events to event log
+                updated_state.event_log.extend(trading_events)
+                
                 set_state(updated_state)
                 # Sleep for a short duration (e.g., 1 second per tick)
                 await asyncio.sleep(1)
@@ -30,6 +101,9 @@ async def simulation_loop():
                 # If not running, check every second
                 await asyncio.sleep(1)
         except Exception as e:
+            import traceback
+            print(f"[SIMULATION LOOP ERROR] {e}", file=sys.stderr, flush=True)
+            print(f"[SIMULATION LOOP ERROR] Traceback:\n{traceback.format_exc()}", file=sys.stderr, flush=True)
             logger.error(f"Error in simulation loop: {e}", exc_info=True)
             # Continue running even if there's an error
             await asyncio.sleep(1)
@@ -85,10 +159,16 @@ async def root():
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
+    import sys
+    state = get_state()
+    print(f"[HEALTH CHECK] State: is_running={state.is_running}, agents={len(state.agents) if state.agents else 0}", file=sys.stderr, flush=True)
+    logger.info(f"Health check - is_running={state.is_running}, agents={len(state.agents) if state.agents else 0}")
     return {
         "status": "online",
         "version": "0.1.0",
-        "timestamp": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z')
+        "timestamp": datetime.now(timezone.utc).isoformat().replace('+00:00', 'Z'),
+        "simulation_running": state.is_running,
+        "agent_count": len(state.agents) if state.agents else 0
     }
 
 
@@ -96,7 +176,8 @@ async def health_check():
 async def get_world_state():
     """Get current world state"""
     state = get_state()
-    return state.model_dump()
+    # FastAPI automatically serializes Pydantic models
+    return state
 
 
 @app.post("/api/config")
@@ -107,6 +188,8 @@ async def set_simulation_config(config: SimulationConfig):
     try:
         # Reset existing state
         reset_state()
+        # Clear agent instance cache when reconfiguring
+        engine.clear_agent_cache()
         
         # Create a mapping of job names to resources produced
         job_to_resource = {job.job_name: job.resource_produced for job in config.jobs}
@@ -187,8 +270,13 @@ async def set_simulation_config(config: SimulationConfig):
 @app.post("/api/control/start")
 async def start_simulation():
     """Start the simulation"""
+    import sys
+    print("[START ENDPOINT] Starting simulation", file=sys.stderr, flush=True)
+    logger.info("Start simulation endpoint called")
+    
     state = get_state()
     if not state.agents:
+        print("[START ENDPOINT] ERROR: No agents configured", file=sys.stderr, flush=True)
         return {"status": "error", "message": "No agents configured. Please configure simulation first."}
     
     # Create a copy to avoid mutating the shared state
@@ -196,6 +284,10 @@ async def start_simulation():
     updated_state = deepcopy(state)
     updated_state.is_running = True
     set_state(updated_state)
+    
+    print(f"[START ENDPOINT] Simulation started. Agents: {len(updated_state.agents)}, is_running: {updated_state.is_running}", file=sys.stderr, flush=True)
+    logger.info(f"Simulation started with {len(updated_state.agents)} agents")
+    
     return {"status": "ok", "message": "Simulation started"}
 
 

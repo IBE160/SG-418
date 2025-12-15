@@ -83,8 +83,7 @@ export default function ConfigPage() {
     
     try {
       await apiClient.setConfig(data);
-      // Start simulation and navigate to dashboard
-      await apiClient.startSimulation();
+      // Navigate to dashboard - user will start simulation manually
       setView('dashboard');
       router.push('/dashboard');
     } catch (error) {
