@@ -21,6 +21,71 @@ AIES enables researchers to model complex economic and social systems by definin
 - **AI Integration**: Google AI Python SDK with Gemini models
 - **Visualization**: Recharts for economic value graphs and agent interaction diagrams
 
+## Prerequisites
+
+- Node.js 18+
+- Python 3.12+
+- Google Gemini API Key
+- `uv` package manager for Python (install from https://github.com/astral-sh/uv)
+
+## Running the Program
+
+### Backend Setup
+
+1. Navigate to the backend directory:
+```bash
+cd backend
+```
+
+2. Install Python dependencies:
+```bash
+uv sync
+```
+
+3. Put your api key in
+
+backend/app/agents/implementation.py line 33
+
+
+Alternatively, you can manually create the `.env` file and add:
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+4. Start the backend server:
+```bash
+uv run uvicorn app.main:app --reload
+```
+
+The backend will run on `http://localhost:8000` by default. API documentation is available at `http://localhost:8000/docs`.
+
+### Frontend Setup
+
+1. Open a new terminal and navigate to the frontend directory:
+```bash
+cd frontend
+```
+
+2. Install Node.js dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+The frontend will run on `http://localhost:3000` by default.
+
+### Accessing the Application
+
+Once both servers are running:
+- Open your browser and navigate to `http://localhost:3000`
+- The frontend will connect to the backend API automatically
+
+**Note**: Both servers must be running simultaneously for the application to work properly.
+
 ## Target Users
 
 - Researchers in economics, sociology, and computer science
